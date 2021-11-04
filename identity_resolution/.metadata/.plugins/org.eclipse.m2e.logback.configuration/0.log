@@ -1,0 +1,48 @@
+2021-11-04 15:27:43,421 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2021-11-04 15:28:39,425 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2021-11-04 15:29:17,998 [Worker-6: Importing Maven projects] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: de.uni_mannheim.informatik.dws.wdi:ExerciseIdentityResolution_Solution:0.0.1-SNAPSHOT @ /home/alina/Documents/DataScience/3_semester/WebDataIntegration/project/WebDataIntegration/identity_resolution/pom.xml.
+2021-11-04 15:29:18,850 [Worker-6: Importing Maven projects] ERROR o.e.m.c.i.i.nexus.NexusIndexManager - Unable to add de/uni_mannheim/informatik/dws/wdi/ExerciseIdentityResolution_Solution/0.0.1-SNAPSHOT/ExerciseIdentityResolution_Solution-0.0.1-SNAPSHOT.pom
+java.io.FileNotFoundException: /home/alina/Documents/DataScience/3_semester/WebDataIntegration/project/WebDataIntegration/.metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/_2.fdt (No such file or directory)
+	at java.io.RandomAccessFile.open0(Native Method) ~[na:1.8.0_292]
+	at java.io.RandomAccessFile.open(RandomAccessFile.java:316) ~[na:1.8.0_292]
+	at java.io.RandomAccessFile.<init>(RandomAccessFile.java:243) ~[na:1.8.0_292]
+	at org.apache.lucene.store.FSDirectory$FSIndexOutput.<init>(FSDirectory.java:639) ~[lucene-core-2.4.1.jar:2.4.1 750176 - 2009-03-04 21:56:52]
+	at org.apache.lucene.store.FSDirectory.createOutput(FSDirectory.java:442) ~[lucene-core-2.4.1.jar:2.4.1 750176 - 2009-03-04 21:56:52]
+	at org.apache.lucene.index.FieldsWriter.<init>(FieldsWriter.java:62) ~[lucene-core-2.4.1.jar:2.4.1 750176 - 2009-03-04 21:56:52]
+	at org.apache.lucene.index.StoredFieldsWriter.initFieldsWriter(StoredFieldsWriter.java:65) ~[lucene-core-2.4.1.jar:2.4.1 750176 - 2009-03-04 21:56:52]
+	at org.apache.lucene.index.StoredFieldsWriter.finishDocument(StoredFieldsWriter.java:141) ~[lucene-core-2.4.1.jar:2.4.1 750176 - 2009-03-04 21:56:52]
+	at org.apache.lucene.index.StoredFieldsWriter$PerDoc.finish(StoredFieldsWriter.java:187) ~[lucene-core-2.4.1.jar:2.4.1 750176 - 2009-03-04 21:56:52]
+	at org.apache.lucene.index.DocumentsWriter$WaitQueue.writeDocument(DocumentsWriter.java:1408) ~[lucene-core-2.4.1.jar:2.4.1 750176 - 2009-03-04 21:56:52]
+	at org.apache.lucene.index.DocumentsWriter$WaitQueue.add(DocumentsWriter.java:1427) ~[lucene-core-2.4.1.jar:2.4.1 750176 - 2009-03-04 21:56:52]
+	at org.apache.lucene.index.DocumentsWriter.finishDocument(DocumentsWriter.java:1062) ~[lucene-core-2.4.1.jar:2.4.1 750176 - 2009-03-04 21:56:52]
+	at org.apache.lucene.index.DocumentsWriter.updateDocument(DocumentsWriter.java:768) ~[lucene-core-2.4.1.jar:2.4.1 750176 - 2009-03-04 21:56:52]
+	at org.apache.lucene.index.DocumentsWriter.updateDocument(DocumentsWriter.java:748) ~[lucene-core-2.4.1.jar:2.4.1 750176 - 2009-03-04 21:56:52]
+	at org.apache.lucene.index.IndexWriter.updateDocument(IndexWriter.java:2047) ~[lucene-core-2.4.1.jar:2.4.1 750176 - 2009-03-04 21:56:52]
+	at org.apache.lucene.index.IndexWriter.updateDocument(IndexWriter.java:2024) ~[lucene-core-2.4.1.jar:2.4.1 750176 - 2009-03-04 21:56:52]
+	at org.apache.maven.index.DefaultIndexerEngine.update(DefaultIndexerEngine.java:80) ~[org.eclipse.m2e.maven.indexer_1.13.0.20190716-1623/:na]
+	at org.apache.maven.index.DefaultNexusIndexer.addArtifactToIndex(DefaultNexusIndexer.java:338) ~[org.eclipse.m2e.maven.indexer_1.13.0.20190716-1623/:na]
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager.addDocument(NexusIndexManager.java:580) [org.eclipse.m2e.core_1.13.0.20190716-1624.jar:na]
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager.mavenProjectChanged(NexusIndexManager.java:766) [org.eclipse.m2e.core_1.13.0.20190716-1624.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.notifyProjectChangeListeners(ProjectRegistryManager.java:825) [org.eclipse.m2e.core_1.13.0.20190716-1624.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.applyMutableProjectRegistry(ProjectRegistryManager.java:989) [org.eclipse.m2e.core_1.13.0.20190716-1624.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:314) [org.eclipse.m2e.core_1.13.0.20190716-1624.jar:na]
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager.configureNewMavenProjects(ProjectConfigurationManager.java:259) [org.eclipse.m2e.core_1.13.0.20190716-1624.jar:na]
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager$1.call(ProjectConfigurationManager.java:175) [org.eclipse.m2e.core_1.13.0.20190716-1624.jar:na]
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager$1.call(ProjectConfigurationManager.java:1) [org.eclipse.m2e.core_1.13.0.20190716-1624.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:177) [org.eclipse.m2e.core_1.13.0.20190716-1624.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151) [org.eclipse.m2e.core_1.13.0.20190716-1624.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99) [org.eclipse.m2e.core_1.13.0.20190716-1624.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1374) [org.eclipse.m2e.core_1.13.0.20190716-1624.jar:na]
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager.importProjects(ProjectConfigurationManager.java:143) [org.eclipse.m2e.core_1.13.0.20190716-1624.jar:na]
+	at org.eclipse.m2e.core.ui.internal.wizards.ImportMavenProjectsJob$1.doCreateMavenProjects(ImportMavenProjectsJob.java:68) [org.eclipse.m2e.core.ui_1.13.0.20190716-1624.jar:na]
+	at org.eclipse.m2e.core.ui.internal.wizards.AbstractCreateMavenProjectsOperation.run(AbstractCreateMavenProjectsOperation.java:73) [org.eclipse.m2e.core.ui_1.13.0.20190716-1624.jar:na]
+	at org.eclipse.m2e.core.ui.internal.wizards.ImportMavenProjectsJob.runInWorkspace(ImportMavenProjectsJob.java:77) [org.eclipse.m2e.core.ui_1.13.0.20190716-1624.jar:na]
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:42) [org.eclipse.core.resources_3.13.500.v20190819-0800.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63) [org.eclipse.core.jobs_3.10.500.v20190620-1426.jar:na]
+2021-11-04 15:29:19,516 [Worker-6: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /identity_resolution/src/main/java
+2021-11-04 15:29:19,523 [Worker-6: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /identity_resolution/src/test/java
+2021-11-04 15:29:20,108 [Worker-6: Importing Maven projects] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 4 sec
+2021-11-04 15:29:24,046 [Worker-13: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-11-04 15:29:24,048 [Worker-13: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/alina/Documents/DataScience/3_semester/WebDataIntegration/project/WebDataIntegration/identity_resolution/src/main/resources
+2021-11-04 15:29:24,053 [Worker-13: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-11-04 15:29:24,053 [Worker-13: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/alina/Documents/DataScience/3_semester/WebDataIntegration/project/WebDataIntegration/identity_resolution/src/test/resources
