@@ -17,6 +17,9 @@ import de.uni_mannheim.informatik.dws.winter.model.Correspondence;
 import de.uni_mannheim.informatik.dws.winter.model.Matchable;
 import de.uni_mannheim.informatik.dws.winter.model.defaultmodel.Attribute;
 import de.uni_mannheim.informatik.dws.winter.similarity.date.YearSimilarity;
+
+import java.time.LocalDateTime;
+
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.Earthquake;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.Movie;
 
@@ -39,8 +42,12 @@ public class EarthquakeDateComparator2Years implements Comparator<Earthquake, At
 			Earthquake record1,
 			Earthquake record2,
 			Correspondence<Attribute, Matchable> schemaCorrespondences) {
+		
+		// convert LocalDate to LocalDateTime with time 00:00 for comparison purpose
+		LocalDateTime ldt1 = record1.getDate().atStartOfDay();
+		LocalDateTime ldt2 = record2.getDate().atStartOfDay();
     	
-    	double similarity = sim.calculate(record1.getDate(), record2.getDate());
+    	double similarity = sim.calculate(ldt1, ldt2);
     	
 		if(this.comparisonLog != null){
 			this.comparisonLog.setComparatorName(getClass().getName());

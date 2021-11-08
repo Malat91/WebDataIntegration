@@ -5,6 +5,8 @@ import java.io.File;
 import org.slf4j.Logger;
 
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Blocking.MovieBlockingKeyByTitleGenerator;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeCountryComparatorLowerCaseJaccard;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeDateComparator2Years;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.MovieDateComparator2Years;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.MovieTitleComparatorJaccard;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.Earthquake;
@@ -64,14 +66,14 @@ public class IR_using_linear_combination_eq
 		gsTest.loadFromCSVFile(new File(
 				"data/goldstandard/gs_ds1_d2.csv"));
 
-		// TODO: create a matching rule
-		LinearCombinationMatchingRule<Movie, Attribute> matchingRule = new LinearCombinationMatchingRule<>(
+		// create a matching rule
+		LinearCombinationMatchingRule<Earthquake, Attribute> matchingRule = new LinearCombinationMatchingRule<>(
 				0.7);
 		matchingRule.activateDebugReport("data/output/debugResultsMatchingRule.csv", 1000, gsTest);
 		
-		// TODO: add comparators
-		matchingRule.addComparator(new MovieDateComparator2Years(), 0.5);
-		matchingRule.addComparator(new MovieTitleComparatorJaccard(), 0.5);
+		// add comparators
+		matchingRule.addComparator(new EarthquakeDateComparator2Years(), 0.5);
+		matchingRule.addComparator(new EarthquakeCountryComparatorLowerCaseJaccard(), 0.5);
 		
 		// TODO: create a blocker (blocking strategy)
 		StandardRecordBlocker<Movie, Attribute> blocker = new StandardRecordBlocker<Movie, Attribute>(new MovieBlockingKeyByTitleGenerator());

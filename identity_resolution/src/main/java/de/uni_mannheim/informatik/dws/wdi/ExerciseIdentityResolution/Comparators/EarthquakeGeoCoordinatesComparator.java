@@ -12,16 +12,13 @@
 package de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators;
 
 
-import org.apache.commons.math3.util.Precision;
-
-import com.github.andrewoma.dexx.collection.Pair;
-
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.Earthquake;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.Movie;
 import de.uni_mannheim.informatik.dws.winter.matching.rules.comparators.Comparator;
 import de.uni_mannheim.informatik.dws.winter.matching.rules.comparators.ComparatorLogger;
 import de.uni_mannheim.informatik.dws.winter.model.Correspondence;
 import de.uni_mannheim.informatik.dws.winter.model.Matchable;
+import de.uni_mannheim.informatik.dws.winter.model.Pair;
 import de.uni_mannheim.informatik.dws.winter.model.defaultmodel.Attribute;
 import de.uni_mannheim.informatik.dws.winter.similarity.date.YearSimilarity;
 import de.uni_mannheim.informatik.dws.winter.similarity.geo.GeoCoordinateSimilarity;
@@ -46,8 +43,8 @@ public class EarthquakeGeoCoordinatesComparator implements Comparator<Earthquake
 			Earthquake record2,
 			Correspondence<Attribute, Matchable> schemaCorrespondences) {
     	
-		Pair<Double, Double> pair1 = new Pair<>(Precision.round(record1.getLatitude(),1),Precision.round(record1.getLongitude(),1));
-		Pair<Double, Double> pair2 = new Pair<>(Precision.round(record2.getLatitude(),1),Precision.round(record2.getLongitude(),1));
+		Pair<Double, Double> pair1 = new Pair<>(record1.getLatitude(),record1.getLongitude());
+		Pair<Double, Double> pair2 = new Pair<>(record2.getLatitude(),record2.getLongitude());
     	double similarity = sim.calculate(pair1,pair2);
     	
 		if(this.comparisonLog != null){
