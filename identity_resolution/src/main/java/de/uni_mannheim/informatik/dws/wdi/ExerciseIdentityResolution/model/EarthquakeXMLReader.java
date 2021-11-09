@@ -20,11 +20,13 @@ import java.time.temporal.ChronoField;
 import java.util.List;
 import java.util.Locale;
 
+import org.slf4j.Logger;
 import org.w3c.dom.Node;
 
 import de.uni_mannheim.informatik.dws.winter.model.DataSet;
 import de.uni_mannheim.informatik.dws.winter.model.defaultmodel.Attribute;
 import de.uni_mannheim.informatik.dws.winter.model.io.XMLMatchableReader;
+import de.uni_mannheim.informatik.dws.winter.utils.WinterLogManager;
 
 /**
  * A {@link XMLMatchableReader} for {@link Earthquake}s.
@@ -32,6 +34,8 @@ import de.uni_mannheim.informatik.dws.winter.model.io.XMLMatchableReader;
  * 
  */
 public class EarthquakeXMLReader extends XMLMatchableReader<Earthquake, Attribute>  {
+	
+	private static final Logger logger = WinterLogManager.activateLogger("default");
 
 	/* (non-Javadoc)
 	 * @see de.uni_mannheim.informatik.wdi.model.io.XMLMatchableReader#initialiseDataset(de.uni_mannheim.informatik.wdi.model.DataSet)
@@ -49,26 +53,60 @@ public class EarthquakeXMLReader extends XMLMatchableReader<Earthquake, Attribut
 		// create the object with id and provenance information
 		Earthquake earthquake = new Earthquake(id, provenanceInfo);
 
-		// fill the attributes
-		earthquake.setCountry(getValueFromChildElement(node,"location/country"));
-		earthquake.setLatitude(Double.parseDouble(getValueFromChildElement(node,"location/latitude")));
-		earthquake.setLongitude(Double.parseDouble(getValueFromChildElement(node,"location/longitude")));
+		// fill the attributes of earthquake
+		earthquake.setCountry(getValueFromChildElement(node, "country"));
 		
-		earthquake.setMagnitude(Double.parseDouble(getValueFromChildElement(node,"magnitude")));
-		earthquake.setDepth(Double.parseDouble(getValueFromChildElement(node,"depth")));
+		// catch missing values and only set available attributes 
+		try {
+			earthquake.setLatitude(Double.parseDouble(getValueFromChildElement(node,"latitude")));
+		} catch (Exception e) {
+			//logger.info("missing [latitude]");
+		}
+		try {
+			earthquake.setLongitude(Double.parseDouble(getValueFromChildElement(node,"longitude")));
+		} catch (Exception e) {
+			//logger.info("missing [longitude]");
+		}
+		try {
+			earthquake.setMagnitude(Double.parseDouble(getValueFromChildElement(node,"magnitude")));
+		} catch (Exception e) {
+			//logger.info("missing [magnitude]");
+		}
+		try {
+			earthquake.setDepth(Double.parseDouble(getValueFromChildElement(node,"depth")));
+		} catch (Exception e) {
+			//logger.info("missing [depth]");
+		}
+		try {
+			
+			earthquake.setDeaths(Integer.parseInt(getValueFromChildElement(node,"deaths")));
+		} catch (Exception e) {
+			//logger.info("missing [deaths]");
+		}
+		try {
+			earthquake.setTotalDamages(Double.parseDouble(getValueFromChildElement(node,"totalDamages")));
+		} catch (Exception e) {
+			//logger.info("missing [totalDamages]");
+		}
 		
-		earthquake.setDeaths(Integer.parseInt(getValueFromChildElement(node,"consequences/deaths")));
-		earthquake.setTotalDamages(Double.parseDouble(getValueFromChildElement(node,"consequences/totalDamages")));
-
-
 		// convert the date string into a Date object
 		String date = getValueFromChildElement(node, "date");
-		LocalDate dt = LocalDate.parse(date);
-		earthquake.setDate(dt);
+		try {
+			LocalDate dt = LocalDate.parse(date);
+			earthquake.setDate(dt);
+		} catch (Exception e) {
+			//logger.info("missing [date]");
+		}
 		
+		// convert the time string into a time object
 		String time = getValueFromChildElement(node, "time");
-		LocalTime lt = LocalTime.parse(time);
-		earthquake.setTime(lt);
+		try {
+			LocalTime lt = LocalTime.parse(time);
+			earthquake.setTime(lt);
+		} catch (Exception e) {
+			//logger.info("missing [time]");
+		}
+
 			
 		return earthquake;
 	}

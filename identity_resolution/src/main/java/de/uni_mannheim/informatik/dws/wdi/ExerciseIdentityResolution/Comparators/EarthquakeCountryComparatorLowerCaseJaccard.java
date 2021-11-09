@@ -68,23 +68,24 @@ public class EarthquakeCountryComparatorLowerCaseJaccard implements Comparator<E
 		// calculate similarity
 		double similarity = sim.calculate(s1, s2);
 		
-		// postprocessing
-		int postSimilarity = 0;
+		// postprocessing ???
+		/*int postSimilarity = 0;
 		if (similarity <= 0.3) {
 			postSimilarity = 0;
 		}
 
-		postSimilarity *= similarity;
+		postSimilarity *= similarity;*/
 		
 		if(this.comparisonLog != null){
 			this.comparisonLog.setRecord1PreprocessedValue(s1);
 			this.comparisonLog.setRecord2PreprocessedValue(s2);
     	
 			this.comparisonLog.setSimilarity(Double.toString(similarity));
-			this.comparisonLog.setPostprocessedSimilarity(Double.toString(postSimilarity));
+			//this.comparisonLog.setPostprocessedSimilarity(Double.toString(postSimilarity));
 		}
 		
-		return postSimilarity;
+		//return postSimilarity;
+		return similarity;
 	}
 
 	@Override

@@ -24,8 +24,6 @@ import de.uni_mannheim.informatik.dws.winter.similarity.date.YearSimilarity;
 import de.uni_mannheim.informatik.dws.winter.similarity.geo.GeoCoordinateSimilarity;
 
 /**
- * {@link Comparator} for {@link Movie}s based on the {@link Movie#getDate()}
- * value. With a maximal difference of 10 years.
  * 
  * @author Oliver Lehmberg (oli@dwslab.de)
  * 
@@ -33,7 +31,7 @@ import de.uni_mannheim.informatik.dws.winter.similarity.geo.GeoCoordinateSimilar
 public class EarthquakeGeoCoordinatesComparator implements Comparator<Earthquake, Attribute> {
 
 	private static final long serialVersionUID = 1L;
-	private GeoCoordinateSimilarity sim = new GeoCoordinateSimilarity(0.5);
+	private GeoCoordinateSimilarity sim = new GeoCoordinateSimilarity(30);
 	
 	private ComparatorLogger comparisonLog;
 

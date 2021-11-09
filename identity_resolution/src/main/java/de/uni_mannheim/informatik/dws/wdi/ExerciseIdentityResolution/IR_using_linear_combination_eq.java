@@ -1,18 +1,19 @@
 package de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 
 import org.slf4j.Logger;
 
-import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Blocking.MovieBlockingKeyByTitleGenerator;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Blocking.EarthquakeBlockingKeyByDecadeGenerator;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Blocking.EarthquakeBlockingKeyByYearGenerator;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Blocking.EarthquakeBlockingKeyByYearMonthGenerator;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeCountryComparatorLowerCaseJaccard;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeDateComparator2Years;
-import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.MovieDateComparator2Years;
-import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.MovieTitleComparatorJaccard;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeGeoCoordinatesComparator;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.Earthquake;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.EarthquakeXMLReader;
-import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.Movie;
-import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.MovieXMLReader;
 import de.uni_mannheim.informatik.dws.winter.matching.MatchingEngine;
 import de.uni_mannheim.informatik.dws.winter.matching.MatchingEvaluator;
 import de.uni_mannheim.informatik.dws.winter.matching.algorithms.MaximumBipartiteMatchingAlgorithm;
@@ -50,41 +51,43 @@ public class IR_using_linear_combination_eq
     {
 		// loading data
 		logger.info("*\tLoading datasets\t*");
+		
 		HashedDataSet<Earthquake, Attribute> dataEarthquakes1 = new HashedDataSet<>();
-		new EarthquakeXMLReader().loadFromXML(new File("data/input/target_earthquakes_1.xml"), "/earthquakes/earthquake", dataEarthquakes1);
+		new EarthquakeXMLReader().loadFromXML(new File("data/input/target_earthquakes_1_without_duplicates.xml"), "/earthquakes/earthquake", dataEarthquakes1);
 		
 		HashedDataSet<Earthquake, Attribute> dataEarthquakes2 = new HashedDataSet<>();
-		new EarthquakeXMLReader().loadFromXML(new File("data/input/target_earthquakes_2.xml"), "/earthquakes/earthquake", dataEarthquakes2);
+		new EarthquakeXMLReader().loadFromXML(new File("data/input/target_earthquakes_2_without_duplicates.xml"), "/earthquakes/earthquake", dataEarthquakes2);
 		
 		HashedDataSet<Earthquake, Attribute> dataEarthquakes3 = new HashedDataSet<>();
-		new EarthquakeXMLReader().loadFromXML(new File("data/input/target_earthquakes_3.xml"), "/earthquakes/earthquake", dataEarthquakes3);
+		new EarthquakeXMLReader().loadFromXML(new File("data/input/target_earthquakes_3_without_duplicates.xml"), "/earthquakes/earthquake", dataEarthquakes3);
 		
 
 		// load the gold standard (test set)
 		logger.info("*\tLoading gold standard\t*");
 		MatchingGoldStandard gsTest = new MatchingGoldStandard();
 		gsTest.loadFromCSVFile(new File(
-				"data/goldstandard/gs_ds1_d2.csv"));
+				"data/goldstandard/ds1_to_ds2_goldstandard.csv"));
 
 		// create a matching rule
 		LinearCombinationMatchingRule<Earthquake, Attribute> matchingRule = new LinearCombinationMatchingRule<>(
 				0.7);
-		matchingRule.activateDebugReport("data/output/debugResultsMatchingRule.csv", 1000, gsTest);
+		matchingRule.activateDebugReport("data/output/debugResultsMatchingRule.csv", 100000, gsTest);
 		
 		// add comparators
-		matchingRule.addComparator(new EarthquakeDateComparator2Years(), 0.5);
-		matchingRule.addComparator(new EarthquakeCountryComparatorLowerCaseJaccard(), 0.5);
+		matchingRule.addComparator(new EarthquakeGeoCoordinatesComparator(), 0.5);
+		matchingRule.addComparator(new EarthquakeCountryComparatorLowerCaseJaccard(), 0.25);
+		matchingRule.addComparator(new EarthquakeDateComparator2Years(), 0.25);
 		
-		// TODO: create a blocker (blocking strategy)
-		StandardRecordBlocker<Movie, Attribute> blocker = new StandardRecordBlocker<Movie, Attribute>(new MovieBlockingKeyByTitleGenerator());
-//		NoBlocker<Movie, Attribute> blocker = new NoBlocker<>();
-//		SortedNeighbourhoodBlocker<Movie, Attribute, Attribute> blocker = new SortedNeighbourhoodBlocker<>(new MovieBlockingKeyByTitleGenerator(), 1);
+		// create a blocker (blocking strategy)
+		//NoBlocker<Earthquake, Attribute> blocker = new NoBlocker<>();
+		StandardRecordBlocker<Earthquake, Attribute> blocker = new StandardRecordBlocker<Earthquake,Attribute>(new EarthquakeBlockingKeyByYearMonthGenerator());
+		//SortedNeighbourhoodBlocker<Earthquake, Attribute, Attribute> blocker = new SortedNeighbourhoodBlocker<>(new MovieBlockingKeyByTitleGenerator(), 1);
 		blocker.setMeasureBlockSizes(true);
 		//Write debug results to file:
 		blocker.collectBlockSizeData("data/output/debugResultsBlocking.csv", 100);
 		
 		// Initialize Matching Engine
-		MatchingEngine<Movie, Attribute> engine = new MatchingEngine<>();
+		MatchingEngine<Earthquake, Attribute> engine = new MatchingEngine<>();
 
 		// Execute the matching
 		logger.info("*\tRunning identity resolution\t*");
@@ -101,18 +104,18 @@ public class IR_using_linear_combination_eq
 //		 correspondences = maxWeight.getResult();
 
 		// write the correspondences to the output file
-		new CSVCorrespondenceFormatter().writeCSV(new File("data/output/academy_awards_2_actors_correspondences.csv"), correspondences);
+		new CSVCorrespondenceFormatter().writeCSV(new File("data/output/ds1_to_ds2_correspondences.csv"), correspondences);
 
 		
 		
 		logger.info("*\tEvaluating result\t*");
 		// evaluate your result
-		MatchingEvaluator<Movie, Attribute> evaluator = new MatchingEvaluator<Movie, Attribute>();
+		MatchingEvaluator<Earthquake, Attribute> evaluator = new MatchingEvaluator<Earthquake, Attribute>();
 		Performance perfTest = evaluator.evaluateMatching(correspondences,
 				gsTest);
 
 		// print the evaluation result
-		logger.info("Academy Awards <-> Actors");
+		logger.info("DS1 Earthquakes <-> DS2 Earthquakes");
 		logger.info(String.format(
 				"Precision: %.4f",perfTest.getPrecision()));
 		logger.info(String.format(

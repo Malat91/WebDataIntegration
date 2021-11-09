@@ -11,11 +11,15 @@
  */
 package de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model;
 
+import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.LinkedList;
 import java.util.List;
+
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
 import de.uni_mannheim.informatik.dws.winter.model.AbstractRecord;
 import de.uni_mannheim.informatik.dws.winter.model.Matchable;
 
@@ -128,7 +132,7 @@ public class Earthquake implements Matchable {
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
-
+	
 	public int getDeaths() {
 		return deaths;
 	}
@@ -149,8 +153,41 @@ public class Earthquake implements Matchable {
 
 	@Override
 	public String toString() {
-		return String.format("[Earthquake %s: %s / %s / %s]", getIdentifier(), getDate().toString(),
-				getTime().toString(), getCountry());
+		return (new ReflectionToStringBuilder(this) {
+	         protected boolean accept(Field f) {
+	             return super.accept(f) && !f.getName().equals("password");
+	         }
+	     }).toString();
+		/*StringBuilder result = new StringBuilder();
+		  String newLine = System.getProperty("line.separator");
+
+		  result.append( this.getClass().getName() );
+		  result.append( " Object {" );
+		  result.append(newLine);
+
+		  //determine fields declared in this class only (no fields of superclass)
+		  Field[] fields = this.getClass().getDeclaredFields();
+
+		  //print field names paired with their values
+		  for ( Field field : fields  ) {
+		    result.append("  ");
+		    try {
+		      result.append( field.getName() );
+		      result.append(": ");
+		      //requires access to private field:
+		      result.append( field.get(this) );
+		    } catch ( IllegalAccessException ex ) {
+		      System.out.println(ex);
+		    }
+		    result.append(newLine);
+		  }
+		  result.append("}");
+
+		  return result.toString();*/
+		
+		//return String.format("[Earthquake %s]", getIdentifier());
+		//return String.format("[Earthquake %s: %s / %s / %s]", getIdentifier(), getDate().toString(),
+			//	getTime().toString(), getCountry());
 	}
 
 	@Override
