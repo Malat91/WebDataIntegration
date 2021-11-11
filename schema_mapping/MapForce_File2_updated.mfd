@@ -1,0 +1,832 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Edited with Altova MapForce 2021r3 -->
+<mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="22">
+	<resources/>
+	<component name="defaultmap" uid="1" editable="1" blackbox="0">
+		<properties SelectedLanguage="builtin"/>
+		<structure>
+			<children>
+				<component name="date" library="user" uid="37" kind="19" visible="0" blackbox="0">
+					<view ltx="427" lty="59" rbx="520" rby="76"/>
+					<data>
+						<root>
+							<header>
+								<namespaces>
+									<namespace/>
+								</namespaces>
+							</header>
+							<entry name="value" inpkey="34" componentid="35"/>
+						</root>
+						<root>
+							<header>
+								<namespaces>
+									<namespace/>
+								</namespaces>
+							</header>
+							<entry name="date" outkey="35" componentid="36"/>
+						</root>
+					</data>
+				</component>
+				<component name="time" library="user" uid="46" kind="19" visible="0" blackbox="0">
+					<view ltx="426" lty="106" rbx="520" rby="123"/>
+					<data>
+						<root>
+							<header>
+								<namespaces>
+									<namespace/>
+								</namespaces>
+							</header>
+							<entry name="value" inpkey="45" componentid="44"/>
+						</root>
+						<root>
+							<header>
+								<namespaces>
+									<namespace/>
+								</namespaces>
+							</header>
+							<entry name="time" outkey="46" componentid="45"/>
+						</root>
+					</data>
+				</component>
+				<component name="parse-number" library="core" uid="97" kind="5">
+					<sources>
+						<datapoint pos="0" key="98"/>
+						<datapoint/>
+						<datapoint/>
+						<datapoint/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="99"/>
+					</targets>
+					<view ltx="398" lty="153" rbx="553" rby="238"/>
+				</component>
+				<component name="parse-number" library="core" uid="98" kind="5">
+					<sources>
+						<datapoint pos="0" key="100"/>
+						<datapoint/>
+						<datapoint/>
+						<datapoint/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="101"/>
+					</targets>
+					<view ltx="398" lty="245" rbx="553" rby="330"/>
+				</component>
+				<component name="significant_earthquakes1965-2016_with_countries" library="text" uid="2" kind="16">
+					<properties/>
+					<view rbx="307" rby="437"/>
+					<data>
+						<root>
+							<header>
+								<namespaces>
+									<namespace/>
+									<namespace uid="http://www.altova.com/mapforce"/>
+								</namespaces>
+							</header>
+							<entry name="FileInstance" ns="1" expanded="1">
+								<entry name="document" ns="1" expanded="1">
+									<entry name="Rows" outkey="89" expanded="1">
+										<entry name="Date" outkey="14"/>
+										<entry name="Time" outkey="15"/>
+										<entry name="Latitude" outkey="16"/>
+										<entry name="Longitude" outkey="17"/>
+										<entry name="Depth" outkey="18"/>
+										<entry name="Magnitude" outkey="19"/>
+										<entry name="Country" outkey="33"/>
+									</entry>
+								</entry>
+							</entry>
+						</root>
+						<text type="csv" encoding="1000" byteorder="1" byteordermark="0" inputinstance="significant_earthquakes1965-2016_with_countries.csv">
+							<settings separator="," quote="&quot;" firstrownames="true" removeempty="true">
+								<names root="significant_earthquakes1965-2016_with_countries" block="Rows">
+									<field0 name="Field1" type="string"/>
+									<field1 name="Date" type="string"/>
+									<field2 name="Time" type="string"/>
+									<field3 name="Latitude" type="string"/>
+									<field4 name="Longitude" type="string"/>
+									<field5 name="Type" type="string"/>
+									<field6 name="Depth" type="string"/>
+									<field7 name="Depth Error" type="string"/>
+									<field8 name="Depth Seismic Stations" type="string"/>
+									<field9 name="Magnitude" type="string"/>
+									<field10 name="Magnitude Type" type="string"/>
+									<field11 name="Magnitude Error" type="string"/>
+									<field12 name="Magnitude Seismic Stations" type="string"/>
+									<field13 name="Azimuthal Gap" type="string"/>
+									<field14 name="Horizontal Distance" type="string"/>
+									<field15 name="Horizontal Error" type="string"/>
+									<field16 name="Root Mean Square" type="string"/>
+									<field17 name="ID" type="string"/>
+									<field18 name="Source" type="string"/>
+									<field19 name="Location Source" type="string"/>
+									<field20 name="Magnitude Source" type="string"/>
+									<field21 name="Status" type="string"/>
+									<field22 name="Country" type="string"/>
+								</names>
+							</settings>
+						</text>
+					</data>
+				</component>
+				<component name="parse-number" library="core" uid="99" kind="5">
+					<sources>
+						<datapoint pos="0" key="102"/>
+						<datapoint/>
+						<datapoint/>
+						<datapoint/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="103"/>
+					</targets>
+					<view ltx="399" lty="341" rbx="554" rby="426"/>
+				</component>
+				<component name="normalize-space" library="core" uid="28" kind="5">
+					<sources>
+						<datapoint pos="0" key="30"/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="31"/>
+					</targets>
+					<view ltx="398" lty="524" rbx="500" rby="561"/>
+				</component>
+				<component name="parse-number" library="core" uid="100" kind="5">
+					<sources>
+						<datapoint pos="0" key="104"/>
+						<datapoint/>
+						<datapoint/>
+						<datapoint/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="105"/>
+					</targets>
+					<view ltx="398" lty="433" rbx="553" rby="518"/>
+				</component>
+				<component name="id" library="user" uid="26" kind="19" visible="0" blackbox="0">
+					<view ltx="563" lty="34" rbx="610" rby="51"/>
+					<data>
+						<root>
+							<header>
+								<namespaces/>
+							</header>
+						</root>
+						<root>
+							<header>
+								<namespaces>
+									<namespace/>
+								</namespaces>
+							</header>
+							<entry name="id" outkey="13" componentid="25"/>
+						</root>
+					</data>
+				</component>
+				<component name="target_earthquakes" library="xml" uid="56" kind="14">
+					<properties XSLTTargetEncoding="UTF-8" XSLTDefaultOutput="1"/>
+					<view ltx="1040" lty="-61" rbx="1321" rby="215"/>
+					<data>
+						<root>
+							<header>
+								<namespaces>
+									<namespace/>
+									<namespace uid="http://www.altova.com/mapforce"/>
+								</namespaces>
+							</header>
+							<entry name="FileInstance" ns="1" expanded="1">
+								<entry name="document" ns="1" expanded="1" casttotargettypemode="cast-in-subtree">
+									<entry name="earthquakes" expanded="1">
+										<entry name="earthquake" inpkey="84" expanded="1">
+											<entry name="id" inpkey="85"/>
+											<entry name="date" inpkey="86"/>
+											<entry name="time" inpkey="87"/>
+											<entry name="location" expanded="1">
+												<entry name="latitude" inpkey="49"/>
+												<entry name="longitude" inpkey="73"/>
+												<entry name="country" inpkey="88"/>
+											</entry>
+											<entry name="magnitude" inpkey="83"/>
+											<entry name="depth" inpkey="79"/>
+											<entry name="consequences" expanded="1"/>
+										</entry>
+									</entry>
+								</entry>
+							</entry>
+						</root>
+						<document schema="target_earthquakes.xsd" instanceroot="{}earthquakes" inputinstance="target_earthquakes.xml" outputinstance="target_earthquakes_2.xml"/>
+					</data>
+				</component>
+			</children>
+			<graph directed="1">
+				<edges/>
+				<vertices>
+					<vertex vertexkey="33">
+						<edges>
+							<edge vertexkey="30"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="14">
+						<edges>
+							<edge vertexkey="34"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="15">
+						<edges>
+							<edge vertexkey="45"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="99">
+						<edges>
+							<edge vertexkey="49"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="101">
+						<edges>
+							<edge vertexkey="73"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="105">
+						<edges>
+							<edge vertexkey="79"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="103">
+						<edges>
+							<edge vertexkey="83"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="89">
+						<edges>
+							<edge vertexkey="84"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="13">
+						<edges>
+							<edge vertexkey="85"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="35">
+						<edges>
+							<edge vertexkey="86"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="46">
+						<edges>
+							<edge vertexkey="87"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="31">
+						<edges>
+							<edge vertexkey="88"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="16">
+						<edges>
+							<edge vertexkey="98"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="17">
+						<edges>
+							<edge vertexkey="100"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="19">
+						<edges>
+							<edge vertexkey="102"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="18">
+						<edges>
+							<edge vertexkey="104"/>
+						</edges>
+					</vertex>
+				</vertices>
+			</graph>
+		</structure>
+	</component>
+	<component name="id" library="user" uid="18" inline="1" editable="1" blackbox="0">
+		<structure>
+			<children>
+				<component name="constant" library="core" uid="21" kind="2">
+					<targets>
+						<datapoint pos="0" key="8"/>
+					</targets>
+					<view ltx="716" lty="213" rbx="783" rby="229"/>
+					<data>
+						<constant value="File2_" datatype="string"/>
+					</data>
+				</component>
+				<component name="id" library="core" uid="25" kind="7">
+					<sources>
+						<datapoint pos="0" key="12"/>
+					</sources>
+					<view ltx="993" lty="259" rbx="1028" rby="296"/>
+					<data>
+						<output datatype="string"/>
+						<parameter usageKind="output" name="id"/>
+					</data>
+				</component>
+				<component name="constant" library="core" uid="24" kind="2">
+					<targets>
+						<datapoint pos="0" key="5"/>
+					</targets>
+					<view ltx="183" lty="213" rbx="221" rby="229"/>
+					<data>
+						<constant value="1" datatype="decimal"/>
+					</data>
+				</component>
+				<component name="constant" library="core" uid="101" kind="2">
+					<targets>
+						<datapoint pos="0" key="14"/>
+					</targets>
+					<view ltx="493" lty="360" rbx="557" rby="376"/>
+					<data>
+						<constant value="0000" datatype="string"/>
+					</data>
+				</component>
+				<component name="concat" library="core" uid="22" kind="5" growable="1" growablebasename="value">
+					<sources>
+						<datapoint pos="0" key="9"/>
+						<datapoint pos="1" key="11"/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="7"/>
+					</targets>
+					<view ltx="864" lty="251" rbx="939" rby="305"/>
+				</component>
+				<component name="auto-number" library="core" uid="23" kind="5">
+					<sources>
+						<datapoint/>
+						<datapoint pos="1" key="6"/>
+						<datapoint/>
+						<datapoint/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="1"/>
+					</targets>
+					<view ltx="294" lty="178" rbx="422" rby="263"/>
+				</component>
+				<component name="format-number" library="core" uid="102" kind="5">
+					<sources>
+						<datapoint pos="0" key="13"/>
+						<datapoint pos="1" key="15"/>
+						<datapoint/>
+						<datapoint/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="16"/>
+					</targets>
+					<view ltx="566" lty="259" rbx="721" rby="344"/>
+				</component>
+			</children>
+			<graph directed="1">
+				<edges/>
+				<vertices>
+					<vertex vertexkey="5">
+						<edges>
+							<edge vertexkey="6"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="8">
+						<edges>
+							<edge vertexkey="9"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="16">
+						<edges>
+							<edge vertexkey="11"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="7">
+						<edges>
+							<edge vertexkey="12"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="1">
+						<edges>
+							<edge vertexkey="13"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="14">
+						<edges>
+							<edge vertexkey="15"/>
+						</edges>
+					</vertex>
+				</vertices>
+			</graph>
+		</structure>
+	</component>
+	<component name="date" library="user" uid="32" inline="1" editable="1" blackbox="0">
+		<structure>
+			<children>
+				<component name="constant" library="core" uid="33" kind="2">
+					<targets>
+						<datapoint pos="0" key="3"/>
+					</targets>
+					<view ltx="300" lty="36" rbx="391" rby="52"/>
+					<data>
+						<constant value="[M]/[D]/[Y]" datatype="string"/>
+					</data>
+				</component>
+				<component name="parse-date" library="core" uid="34" kind="5">
+					<sources>
+						<datapoint pos="0" key="2"/>
+						<datapoint pos="1" key="4"/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="1"/>
+					</targets>
+					<view ltx="431" rbx="507" rby="53"/>
+				</component>
+				<component name="date" library="core" uid="36" kind="7">
+					<sources>
+						<datapoint pos="0" key="5"/>
+					</sources>
+					<view ltx="607" rbx="653" rby="37"/>
+					<data>
+						<output datatype="date"/>
+						<parameter usageKind="output" name="date"/>
+					</data>
+				</component>
+				<component name="value" library="core" uid="35" kind="6">
+					<sources>
+						<datapoint/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="6"/>
+					</targets>
+					<view ltx="103" rbx="178" rby="37"/>
+					<data>
+						<input datatype="string"/>
+						<parameter usageKind="input" name="value"/>
+					</data>
+				</component>
+			</children>
+			<graph directed="1">
+				<edges/>
+				<vertices>
+					<vertex vertexkey="6">
+						<edges>
+							<edge vertexkey="2"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="3">
+						<edges>
+							<edge vertexkey="4"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="1">
+						<edges>
+							<edge vertexkey="5"/>
+						</edges>
+					</vertex>
+				</vertices>
+			</graph>
+		</structure>
+	</component>
+	<component name="time" library="user" uid="41" inline="1" editable="1" blackbox="0">
+		<structure>
+			<children>
+				<component name="constant" library="core" uid="42" kind="2">
+					<targets>
+						<datapoint pos="0" key="3"/>
+					</targets>
+					<view ltx="300" lty="43" rbx="386" rby="59"/>
+					<data>
+						<constant value="[H]:[m]:[s]" datatype="string"/>
+					</data>
+				</component>
+				<component name="parse-time" library="core" uid="43" kind="5">
+					<sources>
+						<datapoint pos="0" key="2"/>
+						<datapoint pos="1" key="4"/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="1"/>
+					</targets>
+					<view ltx="441" rbx="517" rby="53"/>
+				</component>
+				<component name="value" library="core" uid="44" kind="6">
+					<sources>
+						<datapoint/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="5"/>
+					</targets>
+					<view rbx="75" rby="37"/>
+					<data>
+						<input datatype="string"/>
+						<parameter usageKind="input" name="value"/>
+					</data>
+				</component>
+				<component name="time" library="core" uid="45" kind="7">
+					<sources>
+						<datapoint pos="0" key="6"/>
+					</sources>
+					<view ltx="617" rbx="664" rby="37"/>
+					<data>
+						<output datatype="time"/>
+						<parameter usageKind="output" name="time"/>
+					</data>
+				</component>
+			</children>
+			<graph directed="1">
+				<edges/>
+				<vertices>
+					<vertex vertexkey="5">
+						<edges>
+							<edge vertexkey="2"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="3">
+						<edges>
+							<edge vertexkey="4"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="1">
+						<edges>
+							<edge vertexkey="6"/>
+						</edges>
+					</vertex>
+				</vertices>
+			</graph>
+		</structure>
+	</component>
+	<component name="lat" library="user" uid="68" inline="1" editable="1" blackbox="0">
+		<structure>
+			<children>
+				<component name="if-else" library="core" uid="70" kind="4">
+					<sources>
+						<datapoint pos="0" key="5"/>
+						<datapoint pos="1" key="2"/>
+						<datapoint/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="3"/>
+					</targets>
+					<view ltx="401" rbx="495" rby="71"/>
+				</component>
+				<component name="valuetrue" library="core" uid="71" kind="6">
+					<sources>
+						<datapoint/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="6"/>
+					</targets>
+					<view rbx="94" rby="37"/>
+					<data>
+						<input datatype="string"/>
+						<parameter usageKind="input" name="valuetrue"/>
+					</data>
+				</component>
+				<component name="latitude" library="core" uid="72" kind="7">
+					<sources>
+						<datapoint pos="0" key="7"/>
+					</sources>
+					<view ltx="595" rbx="656" rby="37"/>
+					<data>
+						<output datatype="anyType"/>
+						<parameter usageKind="output" name="latitude"/>
+					</data>
+				</component>
+				<component name="numeric" library="lang" uid="69" kind="5">
+					<sources>
+						<datapoint pos="0" key="1"/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="4"/>
+					</targets>
+					<view ltx="288" lty="-7" rbx="357" rby="30"/>
+				</component>
+			</children>
+			<graph directed="1">
+				<edges/>
+				<vertices>
+					<vertex vertexkey="6">
+						<edges>
+							<edge vertexkey="1"/>
+							<edge vertexkey="2"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="4">
+						<edges>
+							<edge vertexkey="5"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="3">
+						<edges>
+							<edge vertexkey="7"/>
+						</edges>
+					</vertex>
+				</vertices>
+			</graph>
+		</structure>
+	</component>
+	<component name="long" library="user" uid="76" inline="1" editable="1" blackbox="0">
+		<structure>
+			<children>
+				<component name="numeric" library="lang" uid="77" kind="5">
+					<sources>
+						<datapoint pos="0" key="1"/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="4"/>
+					</targets>
+					<view ltx="300" rbx="369" rby="37"/>
+				</component>
+				<component name="if-else" library="core" uid="78" kind="4">
+					<sources>
+						<datapoint pos="0" key="5"/>
+						<datapoint pos="1" key="2"/>
+						<datapoint/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="3"/>
+					</targets>
+					<view ltx="401" rbx="495" rby="71"/>
+				</component>
+				<component name="valuetrue" library="core" uid="79" kind="6">
+					<sources>
+						<datapoint/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="6"/>
+					</targets>
+					<view rbx="94" rby="37"/>
+					<data>
+						<input datatype="string"/>
+						<parameter usageKind="input" name="valuetrue"/>
+					</data>
+				</component>
+				<component name="longitude" library="core" uid="80" kind="7">
+					<sources>
+						<datapoint pos="0" key="7"/>
+					</sources>
+					<view ltx="595" rbx="665" rby="37"/>
+					<data>
+						<output datatype="anyType"/>
+						<parameter usageKind="output" name="longitude"/>
+					</data>
+				</component>
+			</children>
+			<graph directed="1">
+				<edges/>
+				<vertices>
+					<vertex vertexkey="6">
+						<edges>
+							<edge vertexkey="1"/>
+							<edge vertexkey="2"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="4">
+						<edges>
+							<edge vertexkey="5"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="3">
+						<edges>
+							<edge vertexkey="7"/>
+						</edges>
+					</vertex>
+				</vertices>
+			</graph>
+		</structure>
+	</component>
+	<component name="depth" library="user" uid="84" inline="1" editable="1" blackbox="0">
+		<structure>
+			<children>
+				<component name="numeric" library="lang" uid="85" kind="5">
+					<sources>
+						<datapoint pos="0" key="3"/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="4"/>
+					</targets>
+					<view ltx="300" rbx="369" rby="37"/>
+				</component>
+				<component name="if-else" library="core" uid="86" kind="4">
+					<sources>
+						<datapoint pos="0" key="5"/>
+						<datapoint pos="1" key="1"/>
+						<datapoint/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="2"/>
+					</targets>
+					<view ltx="417" lty="22" rbx="511" rby="93"/>
+				</component>
+				<component name="value" library="core" uid="87" kind="6">
+					<sources>
+						<datapoint/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="6"/>
+					</targets>
+					<view rbx="75" rby="37"/>
+					<data>
+						<input datatype="string"/>
+						<parameter usageKind="input" name="value"/>
+					</data>
+				</component>
+				<component name="depth" library="core" uid="88" kind="7">
+					<sources>
+						<datapoint pos="0" key="7"/>
+					</sources>
+					<view ltx="611" rbx="664" rby="37"/>
+					<data>
+						<output datatype="anyType"/>
+						<parameter usageKind="output" name="depth"/>
+					</data>
+				</component>
+			</children>
+			<graph directed="1">
+				<edges/>
+				<vertices>
+					<vertex vertexkey="6">
+						<edges>
+							<edge vertexkey="1"/>
+							<edge vertexkey="3"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="4">
+						<edges>
+							<edge vertexkey="5"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="2">
+						<edges>
+							<edge vertexkey="7"/>
+						</edges>
+					</vertex>
+				</vertices>
+			</graph>
+		</structure>
+	</component>
+	<component name="magnitude" library="user" uid="90" inline="1" editable="1" blackbox="0">
+		<structure>
+			<children>
+				<component name="if-else" library="core" uid="92" kind="4">
+					<sources>
+						<datapoint pos="0" key="2"/>
+						<datapoint pos="1" key="5"/>
+						<datapoint/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="3"/>
+					</targets>
+					<view ltx="421" rbx="515" rby="71"/>
+				</component>
+				<component name="valuetrue" library="core" uid="93" kind="6">
+					<sources>
+						<datapoint/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="6"/>
+					</targets>
+					<view rbx="94" rby="37"/>
+					<data>
+						<input datatype="string"/>
+						<parameter usageKind="input" name="valuetrue"/>
+					</data>
+				</component>
+				<component name="magnitude" library="core" uid="94" kind="7">
+					<sources>
+						<datapoint pos="0" key="7"/>
+					</sources>
+					<view ltx="615" rbx="691" rby="37"/>
+					<data>
+						<output datatype="anyType"/>
+						<parameter usageKind="output" name="magnitude"/>
+					</data>
+				</component>
+				<component name="numeric" library="lang" uid="91" kind="5">
+					<sources>
+						<datapoint pos="0" key="4"/>
+					</sources>
+					<targets>
+						<datapoint pos="0" key="1"/>
+					</targets>
+					<view ltx="286" lty="-8" rbx="355" rby="29"/>
+				</component>
+			</children>
+			<graph directed="1">
+				<edges/>
+				<vertices>
+					<vertex vertexkey="1">
+						<edges>
+							<edge vertexkey="2"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="6">
+						<edges>
+							<edge vertexkey="4"/>
+							<edge vertexkey="5"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="3">
+						<edges>
+							<edge vertexkey="7"/>
+						</edges>
+					</vertex>
+				</vertices>
+			</graph>
+		</structure>
+	</component>
+</mapping>
