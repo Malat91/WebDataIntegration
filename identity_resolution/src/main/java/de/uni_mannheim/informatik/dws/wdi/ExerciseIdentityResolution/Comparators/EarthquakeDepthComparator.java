@@ -16,24 +16,23 @@ import de.uni_mannheim.informatik.dws.winter.matching.rules.comparators.Comparat
 import de.uni_mannheim.informatik.dws.winter.model.Correspondence;
 import de.uni_mannheim.informatik.dws.winter.model.Matchable;
 import de.uni_mannheim.informatik.dws.winter.model.defaultmodel.Attribute;
-import de.uni_mannheim.informatik.dws.winter.similarity.date.YearSimilarity;
-
-import java.time.LocalDateTime;
-
+import de.uni_mannheim.informatik.dws.winter.similarity.numeric.AbsoluteDifferenceSimilarity;
+import de.uni_mannheim.informatik.dws.winter.similarity.numeric.PercentageSimilarity;
+import de.uni_mannheim.informatik.dws.winter.similarity.string.TokenizingJaccardSimilarity;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.Earthquake;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.Movie;
 
 /**
- * {@link Comparator} for {@link Earthquake}s based on the {@link Earthquake#getDate()}
- * value, with a maximal difference of 2 years.
+ * {@link Comparator} for {@link Earthquake}s based on the
+ * {@link Earthquake#getDepth()} values, and their
+ * {@link AbsoluteDifferenceSimilarity} similarity
  * 
- * @author Oliver Lehmberg (oli@dwslab.de)
  * 
  */
-public class EarthquakeDateComparator2Years implements Comparator<Earthquake, Attribute> {
+public class EarthquakeDepthComparator implements Comparator<Earthquake, Attribute> {
 
 	private static final long serialVersionUID = 1L;
-	private YearSimilarity sim = new YearSimilarity(2);
+	private AbsoluteDifferenceSimilarity sim = new AbsoluteDifferenceSimilarity(20);
 	
 	private ComparatorLogger comparisonLog;
 
@@ -43,22 +42,29 @@ public class EarthquakeDateComparator2Years implements Comparator<Earthquake, At
 			Earthquake record2,
 			Correspondence<Attribute, Matchable> schemaCorrespondences) {
 		
-		// convert LocalDate to LocalDateTime with time 00:00 for comparison purpose
-		LocalDateTime ldt1 = record1.getDate().atStartOfDay();
-		LocalDateTime ldt2 = record2.getDate().atStartOfDay();
+		Double d1 = record1.getDepth();
+		Double d2 = record2.getDepth();
+		
+		double similarity;
+		
+		// return 0 if one or both has no depth value
+		if (d1 == -1 || d2 == -1) {
+			similarity =  0.0; 
+		} else {
     	
-    	double similarity = sim.calculate(ldt1, ldt2);
-    	
+			similarity = sim.calculate(d1, d2);
+		}
+		
 		if(this.comparisonLog != null){
 			this.comparisonLog.setComparatorName(getClass().getName());
+			
+			this.comparisonLog.setRecord1Value(d1.toString());
+			this.comparisonLog.setRecord2Value(d2.toString());
 		
-			this.comparisonLog.setRecord1Value(record1.getDate().toString());
-			this.comparisonLog.setRecord2Value(record2.getDate().toString());
-    	
 			this.comparisonLog.setSimilarity(Double.toString(similarity));
 		}
+		
 		return similarity;
-
 	}
 
 	@Override
@@ -70,7 +76,6 @@ public class EarthquakeDateComparator2Years implements Comparator<Earthquake, At
 	public void setComparisonLog(ComparatorLogger comparatorLog) {
 		this.comparisonLog = comparatorLog;
 	}
-
 
 	
 

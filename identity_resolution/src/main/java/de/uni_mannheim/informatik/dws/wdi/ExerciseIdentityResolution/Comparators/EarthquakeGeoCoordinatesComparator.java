@@ -31,7 +31,7 @@ import de.uni_mannheim.informatik.dws.winter.similarity.geo.GeoCoordinateSimilar
 public class EarthquakeGeoCoordinatesComparator implements Comparator<Earthquake, Attribute> {
 
 	private static final long serialVersionUID = 1L;
-	private GeoCoordinateSimilarity sim = new GeoCoordinateSimilarity(30);
+	private GeoCoordinateSimilarity sim = new GeoCoordinateSimilarity(50);
 	
 	private ComparatorLogger comparisonLog;
 
@@ -41,9 +41,21 @@ public class EarthquakeGeoCoordinatesComparator implements Comparator<Earthquake
 			Earthquake record2,
 			Correspondence<Attribute, Matchable> schemaCorrespondences) {
     	
+		double similarity;
+		
 		Pair<Double, Double> pair1 = new Pair<>(record1.getLatitude(),record1.getLongitude());
 		Pair<Double, Double> pair2 = new Pair<>(record2.getLatitude(),record2.getLongitude());
-    	double similarity = sim.calculate(pair1,pair2);
+		
+		if (pair1.getFirst() != -10000 
+				&& pair2.getFirst() != -10000 
+				&& pair1.getSecond() != -10000 
+				&& pair2.getSecond() != -10000) {
+			
+	    	similarity = sim.calculate(pair1,pair2);
+		} else {
+			similarity = 0.0;
+		}
+		
     	
 		if(this.comparisonLog != null){
 			this.comparisonLog.setComparatorName(getClass().getName());

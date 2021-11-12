@@ -16,24 +16,26 @@ import de.uni_mannheim.informatik.dws.winter.matching.rules.comparators.Comparat
 import de.uni_mannheim.informatik.dws.winter.model.Correspondence;
 import de.uni_mannheim.informatik.dws.winter.model.Matchable;
 import de.uni_mannheim.informatik.dws.winter.model.defaultmodel.Attribute;
+import de.uni_mannheim.informatik.dws.winter.similarity.date.DaySimilarity;
 import de.uni_mannheim.informatik.dws.winter.similarity.date.YearSimilarity;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.Earthquake;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.Movie;
 
 /**
  * {@link Comparator} for {@link Earthquake}s based on the {@link Earthquake#getDate()}
- * value, with a maximal difference of 2 years.
+ * value, with a maximal difference of 5 days.
  * 
  * @author Oliver Lehmberg (oli@dwslab.de)
  * 
  */
-public class EarthquakeDateComparator2Years implements Comparator<Earthquake, Attribute> {
+public class EarthquakeDateComparator implements Comparator<Earthquake, Attribute> {
 
 	private static final long serialVersionUID = 1L;
-	private YearSimilarity sim = new YearSimilarity(2);
+	private DaySimilarity sim = new DaySimilarity(5);
 	
 	private ComparatorLogger comparisonLog;
 
@@ -43,10 +45,26 @@ public class EarthquakeDateComparator2Years implements Comparator<Earthquake, At
 			Earthquake record2,
 			Correspondence<Attribute, Matchable> schemaCorrespondences) {
 		
-		// convert LocalDate to LocalDateTime with time 00:00 for comparison purpose
-		LocalDateTime ldt1 = record1.getDate().atStartOfDay();
-		LocalDateTime ldt2 = record2.getDate().atStartOfDay();
-    	
+		// convert LocalDate to LocalDateTime for comparison purpose
+		LocalTime t1 = record1.getTime();
+		LocalTime t2 = record2.getTime();
+		
+		LocalDateTime ldt1;
+		LocalDateTime ldt2;
+		
+		if (t1 != null) {
+			ldt1 = record1.getDate().atTime(t1.getHour(),t1.getMinute());
+		} else {
+			ldt1 = record1.getDate().atStartOfDay();
+		}
+		
+		if (t2 != null) {
+			ldt2 = record2.getDate().atTime(t2.getHour(),t2.getMinute());
+		} else {
+			ldt2 = record2.getDate().atStartOfDay();
+		}
+		
+
     	double similarity = sim.calculate(ldt1, ldt2);
     	
 		if(this.comparisonLog != null){

@@ -17,23 +17,25 @@ import de.uni_mannheim.informatik.dws.winter.model.Correspondence;
 import de.uni_mannheim.informatik.dws.winter.model.Matchable;
 import de.uni_mannheim.informatik.dws.winter.model.defaultmodel.Attribute;
 import de.uni_mannheim.informatik.dws.winter.similarity.date.YearSimilarity;
+import de.uni_mannheim.informatik.dws.winter.similarity.numeric.AbsoluteDifferenceSimilarity;
+import de.uni_mannheim.informatik.dws.winter.similarity.string.LevenshteinSimilarity;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.Earthquake;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.Movie;
 
 /**
- * {@link Comparator} for {@link Earthquake}s based on the {@link Earthquake#getDate()}
- * value, with a maximal difference of 2 years.
+ * {@link Comparator} for {@link Earthquake}s based on the {@link Earthquakee#getTime()}
+ * value and the absolute difference similarity of their minutes value.
  * 
  * @author Oliver Lehmberg (oli@dwslab.de)
  * 
  */
-public class EarthquakeDateComparator2Years implements Comparator<Earthquake, Attribute> {
+public class EarthquakeTimeComparatorMinutes implements Comparator<Earthquake, Attribute> {
 
 	private static final long serialVersionUID = 1L;
-	private YearSimilarity sim = new YearSimilarity(2);
+	private AbsoluteDifferenceSimilarity sim = new AbsoluteDifferenceSimilarity(15);
 	
 	private ComparatorLogger comparisonLog;
 
@@ -43,22 +45,39 @@ public class EarthquakeDateComparator2Years implements Comparator<Earthquake, At
 			Earthquake record2,
 			Correspondence<Attribute, Matchable> schemaCorrespondences) {
 		
-		// convert LocalDate to LocalDateTime with time 00:00 for comparison purpose
-		LocalDateTime ldt1 = record1.getDate().atStartOfDay();
-		LocalDateTime ldt2 = record2.getDate().atStartOfDay();
+		
+		LocalTime t1 = record1.getTime();
+		LocalTime t2 = record2.getTime();
+		
+		double similarity;
+		double min1 = -1;
+		double min2 = -1;
+		
+		// return 0 if one or both has no time value
+		if (t1 == null || t2 == null) {
+			similarity =  0.0; 
+		} else {
     	
-    	double similarity = sim.calculate(ldt1, ldt2);
-    	
+			min1 = t1.getMinute();
+			min2 = t2.getMinute();
+			
+			similarity = sim.calculate(min1, min2);
+			
+		}
+		
 		if(this.comparisonLog != null){
 			this.comparisonLog.setComparatorName(getClass().getName());
 		
-			this.comparisonLog.setRecord1Value(record1.getDate().toString());
-			this.comparisonLog.setRecord2Value(record2.getDate().toString());
-    	
+			this.comparisonLog.setRecord1Value(Double.toString(min1));
+			this.comparisonLog.setRecord2Value(Double.toString(min2));
+		
 			this.comparisonLog.setSimilarity(Double.toString(similarity));
 		}
+		
+			
 		return similarity;
-
+		
+		
 	}
 
 	@Override
@@ -70,8 +89,5 @@ public class EarthquakeDateComparator2Years implements Comparator<Earthquake, At
 	public void setComparisonLog(ComparatorLogger comparatorLog) {
 		this.comparisonLog = comparatorLog;
 	}
-
-
-	
 
 }
