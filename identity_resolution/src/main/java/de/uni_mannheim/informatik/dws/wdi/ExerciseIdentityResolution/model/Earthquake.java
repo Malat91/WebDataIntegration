@@ -153,12 +153,14 @@ public class Earthquake implements Matchable {
 
 	@Override
 	public String toString() {
-		return (new ReflectionToStringBuilder(this) {
+		String s = (new ReflectionToStringBuilder(this) {
 	         protected boolean accept(Field f) {
 	             return super.accept(f) && !f.getName().equals("password");
 	         }
 	     }).toString();
-			}
+			
+		return s.substring(87);
+	}
 
 	@Override
 	public int hashCode() {

@@ -56,37 +56,38 @@ public class EarthquakeXMLReader extends XMLMatchableReader<Earthquake, Attribut
 		// fill the attributes of earthquake
 		earthquake.setCountry(getValueFromChildElement(node, "country"));
 		
-		// catch missing values and only set available attributes 
+		// catch missing values and set attribute values to -1
 		try {
 			earthquake.setLatitude(Double.parseDouble(getValueFromChildElement(node,"latitude")));
 		} catch (Exception e) {
-			//logger.info("missing [latitude]");
+			earthquake.setLatitude(-10000);
 		}
 		try {
 			earthquake.setLongitude(Double.parseDouble(getValueFromChildElement(node,"longitude")));
 		} catch (Exception e) {
-			//logger.info("missing [longitude]");
+			earthquake.setLongitude(-10000);
 		}
 		try {
 			earthquake.setMagnitude(Double.parseDouble(getValueFromChildElement(node,"magnitude")));
 		} catch (Exception e) {
-			//logger.info("missing [magnitude]");
+			earthquake.setMagnitude(-1);
 		}
 		try {
-			earthquake.setDepth(Double.parseDouble(getValueFromChildElement(node,"depth")));
+			// parse depth as absolute value to strip possible negative signs
+			earthquake.setDepth(Math.abs(Double.parseDouble(getValueFromChildElement(node,"depth"))));
 		} catch (Exception e) {
-			//logger.info("missing [depth]");
+			earthquake.setDepth(-1);
 		}
 		try {
 			
 			earthquake.setDeaths(Integer.parseInt(getValueFromChildElement(node,"deaths")));
 		} catch (Exception e) {
-			//logger.info("missing [deaths]");
+			earthquake.setDeaths(-1);
 		}
 		try {
 			earthquake.setTotalDamages(Double.parseDouble(getValueFromChildElement(node,"totalDamages")));
 		} catch (Exception e) {
-			//logger.info("missing [totalDamages]");
+			earthquake.setTotalDamages(-1);
 		}
 		
 		// convert the date string into a Date object

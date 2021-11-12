@@ -10,8 +10,13 @@ import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Blocking.Ea
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Blocking.EarthquakeBlockingKeyByYearGenerator;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Blocking.EarthquakeBlockingKeyByYearMonthGenerator;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeCountryComparatorLowerCaseJaccard;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeDateComparator;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeDateComparator2Years;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeDepthComparator;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeGeoCoordinatesComparator;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeMagnitudeComparator;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeTimeComparatorLevenshtein;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeTimeComparatorMinutes;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.Earthquake;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.EarthquakeXMLReader;
 import de.uni_mannheim.informatik.dws.winter.matching.MatchingEngine;
@@ -66,7 +71,7 @@ public class IR_using_linear_combination_eq
 		logger.info("*\tLoading gold standard\t*");
 		MatchingGoldStandard gsTest = new MatchingGoldStandard();
 		gsTest.loadFromCSVFile(new File(
-				"data/goldstandard/ds1_to_ds2_goldstandard.csv"));
+				"data/goldstandard/ds2_to_ds3_goldstandard.csv"));
 
 		// create a matching rule
 		LinearCombinationMatchingRule<Earthquake, Attribute> matchingRule = new LinearCombinationMatchingRule<>(
@@ -74,9 +79,14 @@ public class IR_using_linear_combination_eq
 		matchingRule.activateDebugReport("data/output/debugResultsMatchingRule.csv", 100000, gsTest);
 		
 		// add comparators
-		matchingRule.addComparator(new EarthquakeGeoCoordinatesComparator(), 0.5);
-		matchingRule.addComparator(new EarthquakeCountryComparatorLowerCaseJaccard(), 0.25);
-		matchingRule.addComparator(new EarthquakeDateComparator2Years(), 0.25);
+		matchingRule.addComparator(new EarthquakeGeoCoordinatesComparator(), 0.4);
+		matchingRule.addComparator(new EarthquakeDateComparator(), 0.4);
+		matchingRule.addComparator(new EarthquakeTimeComparatorMinutes(), 0.1);
+		matchingRule.addComparator(new EarthquakeMagnitudeComparator(), 0.1);
+		//matchingRule.addComparator(new EarthquakeDepthComparator(), 0.25);
+		//matchingRule.addComparator(new EarthquakeTimeComparatorMinutes(), 0.25);
+		//matchingRule.addComparator(new EarthquakeMagnitudeComparator(), 0.125);
+		//matchingRule.addComparator(new EarthquakeCountryComparatorLowerCaseJaccard(), 0.125);
 		
 		// create a blocker (blocking strategy)
 		//NoBlocker<Earthquake, Attribute> blocker = new NoBlocker<>();
@@ -92,7 +102,7 @@ public class IR_using_linear_combination_eq
 		// Execute the matching
 		logger.info("*\tRunning identity resolution\t*");
 		Processable<Correspondence<Earthquake, Attribute>> correspondences = engine.runIdentityResolution(
-				dataEarthquakes1, dataEarthquakes2, null, matchingRule,
+				dataEarthquakes2, dataEarthquakes3, null, matchingRule,
 				blocker);
 
 		// Create a top-1 global matching
@@ -104,7 +114,7 @@ public class IR_using_linear_combination_eq
 //		 correspondences = maxWeight.getResult();
 
 		// write the correspondences to the output file
-		new CSVCorrespondenceFormatter().writeCSV(new File("data/output/ds1_to_ds2_correspondences.csv"), correspondences);
+		new CSVCorrespondenceFormatter().writeCSV(new File("data/output/ds2_to_ds3_correspondences.csv"), correspondences);
 
 		
 		
@@ -115,7 +125,7 @@ public class IR_using_linear_combination_eq
 				gsTest);
 
 		// print the evaluation result
-		logger.info("DS1 Earthquakes <-> DS2 Earthquakes");
+		logger.info("DS2 Earthquakes <-> DS3 Earthquakes");
 		logger.info(String.format(
 				"Precision: %.4f",perfTest.getPrecision()));
 		logger.info(String.format(
