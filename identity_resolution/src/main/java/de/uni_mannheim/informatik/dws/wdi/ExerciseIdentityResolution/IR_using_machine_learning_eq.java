@@ -6,11 +6,15 @@ import org.slf4j.Logger;
 
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Blocking.EarthquakeBlockingKeyByYearGenerator;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeCountryComparatorLowerCaseJaccard;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeCountryComparatorLowerCaseLevenshtein;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeDateComparator;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeDateComparator2Years;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeDepthComparator;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeGeoCoordinatesComparator;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeMagnitudeComparator;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeTimeComparatorJaccard;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeTimeComparatorLevenshtein;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.Comparators.EarthquakeTimeComparatorMinutes;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.Earthquake;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.EarthquakeXMLReader;
 import de.uni_mannheim.informatik.dws.winter.matching.MatchingEngine;
@@ -61,27 +65,39 @@ public class IR_using_machine_learning_eq {
 		// load the training set
 		logger.info("*\tLoading gold standard training set\t*");
 		MatchingGoldStandard gsTraining = new MatchingGoldStandard();
-		gsTraining.loadFromCSVFile(new File("data/goldstandard/ds1_to_ds2_goldstandard.csv"));
+		gsTraining.loadFromCSVFile(new File("data/goldstandard/ds2_to_ds3_gs_train.csv"));
 		
 		// create a matching rule
-		String options[] = new String[] { "-S" };
-		String modelType = "SimpleLogistic"; // use a logistic regression
-		WekaMatchingRule<Earthquake, Attribute> matchingRule = new WekaMatchingRule<>(0.7, modelType, options);
-		matchingRule.activateDebugReport("data/output/debugResultsMatchingRule.csv", 1000, gsTraining);
+		
+		// use a logistic regression
+		//String options[] = new String[] { "-S" };
+		//String modelType = "SimpleLogistic"; 
+		
+		// use a non-linear model
+		String options[] = new String[] { "-U" };
+		//String options[] = new String[] {  };
+		//String modelType = "RandomForest"; 
+		String modelType = "J48";  //J48-> decision tree
+		WekaMatchingRule<Earthquake, Attribute> matchingRule = new WekaMatchingRule<>(0.5, modelType, options);
+		//matchingRule.setForwardSelection(true);
+		//matchingRule.setBackwardSelection(true);
+		matchingRule.activateDebugReport("data/output/debugResultsMatchingRule.csv", 100000, gsTraining);
 		
 		// add comparators
 		matchingRule.addComparator(new EarthquakeCountryComparatorLowerCaseJaccard());
+		matchingRule.addComparator(new EarthquakeCountryComparatorLowerCaseLevenshtein());
 		matchingRule.addComparator(new EarthquakeDateComparator2Years());
+		matchingRule.addComparator(new EarthquakeDateComparator());
+		matchingRule.addComparator(new EarthquakeDepthComparator());
 		matchingRule.addComparator(new EarthquakeGeoCoordinatesComparator());
 		matchingRule.addComparator(new EarthquakeMagnitudeComparator());
-		matchingRule.addComparator(new EarthquakeTimeComparatorJaccard());
-		matchingRule.addComparator(new EarthquakeTimeComparatorLevenshtein());
+		matchingRule.addComparator(new EarthquakeTimeComparatorMinutes());
 		
 		
 		// train the matching rule's model
 		logger.info("*\tLearning matching rule\t*");
 		RuleLearner<Earthquake, Attribute> learner = new RuleLearner<>();
-		learner.learnMatchingRule(dataEarthquakes1, dataEarthquakes2, null, matchingRule, gsTraining);
+		learner.learnMatchingRule(dataEarthquakes2, dataEarthquakes3, null, matchingRule, gsTraining);
 		logger.info(String.format("Matching rule is:\n%s", matchingRule.getModelDescription()));
 		
 		// create a blocker (blocking strategy)
@@ -96,17 +112,17 @@ public class IR_using_machine_learning_eq {
 		// Execute the matching
 		logger.info("*\tRunning identity resolution\t*");
 		Processable<Correspondence<Earthquake, Attribute>> correspondences = engine.runIdentityResolution(
-				dataEarthquakes1, dataEarthquakes2, null, matchingRule,
+				dataEarthquakes2, dataEarthquakes3, null, matchingRule,
 				blocker);
 
 		// write the correspondences to the output file
-		new CSVCorrespondenceFormatter().writeCSV(new File("data/output/earthquake1_2_earthquake2.csv"), correspondences);
+		new CSVCorrespondenceFormatter().writeCSV(new File("data/output/earthquake2_3_earthquake2.csv"), correspondences);
 
 		// load the gold standard (test set)
 		logger.info("*\tLoading gold standard\t*");
 		MatchingGoldStandard gsTest = new MatchingGoldStandard();
 		gsTest.loadFromCSVFile(new File(
-				"data/goldstandard/ds2_to_ds3_goldstandard.csv"));
+				"data/goldstandard/ds2_to_ds3_gs_test.csv"));
 		
 		// evaluate your result
 		logger.info("*\tEvaluating result\t*");
@@ -115,7 +131,7 @@ public class IR_using_machine_learning_eq {
 				gsTest);
 		
 		// print the evaluation result
-		logger.info("Earthquake 1 <-> Earthquake 2");
+		logger.info("Earthquake 2 <-> Earthquake 3");
 		logger.info(String.format(
 				"Precision: %.4f",perfTest.getPrecision()));
 		logger.info(String.format(
