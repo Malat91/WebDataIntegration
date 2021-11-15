@@ -16,25 +16,23 @@ import de.uni_mannheim.informatik.dws.winter.matching.rules.comparators.Comparat
 import de.uni_mannheim.informatik.dws.winter.model.Correspondence;
 import de.uni_mannheim.informatik.dws.winter.model.Matchable;
 import de.uni_mannheim.informatik.dws.winter.model.defaultmodel.Attribute;
-import de.uni_mannheim.informatik.dws.winter.similarity.date.YearSimilarity;
-import de.uni_mannheim.informatik.dws.winter.similarity.numeric.AbsoluteDifferenceSimilarity;
 import de.uni_mannheim.informatik.dws.winter.similarity.string.LevenshteinSimilarity;
-
-import java.time.LocalTime;
-
+import de.uni_mannheim.informatik.dws.winter.similarity.string.TokenizingJaccardSimilarity;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.Earthquake;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.Movie;
 
 /**
- * {@link Comparator} for {@link Earthquake}s based on the {@link Earthquakee#getTime()}
- * value and the absolute difference similarity of their minutes value.
+ * {@link Comparator} for {@link Earthquake}s based on the
+ * {@link Earthquake#getCountry()} values, and their
+ * {@link LevenshteinSimilarity} similarity, with a lower casing
+ * beforehand.
  * 
- *   
+ * 
  */
-public class EarthquakeTimeComparatorMinutes implements Comparator<Earthquake, Attribute> {
+public class EarthquakeCountryComparatorLowerCaseLevenshtein implements Comparator<Earthquake, Attribute> {
 
 	private static final long serialVersionUID = 1L;
-	private AbsoluteDifferenceSimilarity sim = new AbsoluteDifferenceSimilarity(15);
+	private LevenshteinSimilarity sim = new LevenshteinSimilarity();
 	
 	private ComparatorLogger comparisonLog;
 
@@ -44,39 +42,40 @@ public class EarthquakeTimeComparatorMinutes implements Comparator<Earthquake, A
 			Earthquake record2,
 			Correspondence<Attribute, Matchable> schemaCorrespondences) {
 		
-		
-		LocalTime t1 = record1.getTime();
-		LocalTime t2 = record2.getTime();
-		
-		double similarity;
-		double min1 = -1;
-		double min2 = -1;
-		
-		// return 0 if one or both has no time value
-		if (t1 == null || t2 == null) {
-			similarity =  0.0; 
-		} else {
-    	
-			min1 = t1.getMinute();
-			min2 = t2.getMinute();
-			
-			similarity = sim.calculate(min1, min2);
-			
-		}
+		// preprocessing
+		String s1 = record1.getCountry();
+		String s2 = record2.getCountry();
 		
 		if(this.comparisonLog != null){
 			this.comparisonLog.setComparatorName(getClass().getName());
-		
-			this.comparisonLog.setRecord1Value(Double.toString(min1));
-			this.comparisonLog.setRecord2Value(Double.toString(min2));
-		
-			this.comparisonLog.setSimilarity(Double.toString(similarity));
+			this.comparisonLog.setRecord1Value(s1);
+			this.comparisonLog.setRecord2Value(s2);
 		}
 		
-			
+		if (s1 != null) {
+			s1 = s1.toLowerCase();
+		} else {
+			s1 = "";
+		}
+		
+		if (s2 != null) {
+			s2 = s2.toLowerCase();
+		} else {
+			s2 = "";
+		}
+		
+		// calculate similarity
+		double similarity = sim.calculate(s1, s2);
+		
+		if(this.comparisonLog != null){
+			this.comparisonLog.setRecord1PreprocessedValue(s1);
+			this.comparisonLog.setRecord2PreprocessedValue(s2);
+    	
+			this.comparisonLog.setSimilarity(Double.toString(similarity));
+			this.comparisonLog.setPostprocessedSimilarity(Double.toString(similarity));
+		}
+		
 		return similarity;
-		
-		
 	}
 
 	@Override
@@ -88,5 +87,7 @@ public class EarthquakeTimeComparatorMinutes implements Comparator<Earthquake, A
 	public void setComparisonLog(ComparatorLogger comparatorLog) {
 		this.comparisonLog = comparatorLog;
 	}
+
+	
 
 }

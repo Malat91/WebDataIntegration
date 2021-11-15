@@ -52,6 +52,7 @@ public class EarthquakeDateComparator implements Comparator<Earthquake, Attribut
 		LocalDateTime ldt1;
 		LocalDateTime ldt2;
 		
+		// preprocessing
 		if (t1 != null) {
 			ldt1 = record1.getDate().atTime(t1.getHour(),t1.getMinute());
 		} else {
@@ -72,6 +73,9 @@ public class EarthquakeDateComparator implements Comparator<Earthquake, Attribut
 		
 			this.comparisonLog.setRecord1Value(record1.getDate().toString());
 			this.comparisonLog.setRecord2Value(record2.getDate().toString());
+			
+			this.comparisonLog.setRecord2PreprocessedValue(ldt1.toString());
+			this.comparisonLog.setRecord2PreprocessedValue(ldt2.toString());
     	
 			this.comparisonLog.setSimilarity(Double.toString(similarity));
 		}

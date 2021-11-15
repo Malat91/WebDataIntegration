@@ -16,18 +16,17 @@ import de.uni_mannheim.informatik.dws.winter.matching.rules.comparators.Comparat
 import de.uni_mannheim.informatik.dws.winter.model.Correspondence;
 import de.uni_mannheim.informatik.dws.winter.model.Matchable;
 import de.uni_mannheim.informatik.dws.winter.model.defaultmodel.Attribute;
+import de.uni_mannheim.informatik.dws.winter.similarity.string.LevenshteinSimilarity;
 import de.uni_mannheim.informatik.dws.winter.similarity.string.TokenizingJaccardSimilarity;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.Earthquake;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.Movie;
 
 /**
- * {@link Comparator} for {@link Movie}s based on the
- * {@link Movie#getDirector()} values, and their
+ * {@link Comparator} for {@link Earthquake}s based on the
+ * {@link Earthquake#getCountry()} values, and their
  * {@link TokenizingJaccardSimilarity} similarity, with a lower casing
  * beforehand.
  * 
- * @author Robert Meusel (robert@dwslab.de)
- * @author Oliver Lehmberg (oli@dwslab.de)
  * 
  */
 public class EarthquakeCountryComparatorLowerCaseJaccard implements Comparator<Earthquake, Attribute> {
@@ -49,6 +48,7 @@ public class EarthquakeCountryComparatorLowerCaseJaccard implements Comparator<E
 		
 		if(this.comparisonLog != null){
 			this.comparisonLog.setComparatorName(getClass().getName());
+			
 			this.comparisonLog.setRecord1Value(s1);
 			this.comparisonLog.setRecord2Value(s2);
 		}
@@ -68,24 +68,23 @@ public class EarthquakeCountryComparatorLowerCaseJaccard implements Comparator<E
 		// calculate similarity
 		double similarity = sim.calculate(s1, s2);
 		
-		// postprocessing ???
-		/*int postSimilarity = 0;
+		// postprocessing
+		int postSimilarity = 1;
 		if (similarity <= 0.3) {
 			postSimilarity = 0;
 		}
 
-		postSimilarity *= similarity;*/
+		postSimilarity *= similarity;
 		
 		if(this.comparisonLog != null){
 			this.comparisonLog.setRecord1PreprocessedValue(s1);
 			this.comparisonLog.setRecord2PreprocessedValue(s2);
     	
 			this.comparisonLog.setSimilarity(Double.toString(similarity));
-			//this.comparisonLog.setPostprocessedSimilarity(Double.toString(postSimilarity));
+			this.comparisonLog.setPostprocessedSimilarity(Double.toString(postSimilarity));
 		}
 		
-		//return postSimilarity;
-		return similarity;
+		return postSimilarity;
 	}
 
 	@Override

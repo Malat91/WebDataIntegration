@@ -42,6 +42,9 @@ public class MovieTitleComparatorJaccard implements Comparator<Movie, Attribute>
 		
 		String s1 = record1.getTitle();
 		String s2 = record2.getTitle();
+		
+		System.out.println(record1.getProvenance());
+		System.out.println(record2.getProvenance());
     	
     	double similarity = sim.calculate(s1, s2);
     	
