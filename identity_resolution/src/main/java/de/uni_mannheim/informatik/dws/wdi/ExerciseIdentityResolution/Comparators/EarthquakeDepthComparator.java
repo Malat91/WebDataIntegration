@@ -47,9 +47,9 @@ public class EarthquakeDepthComparator implements Comparator<Earthquake, Attribu
 		
 		double similarity;
 		
-		// return 0 if one or both has no depth value
+		// return 0.5 if one or both has no depth value
 		if (d1 == -1 || d2 == -1) {
-			similarity =  0.0; 
+			similarity =  0.5; 
 		} else {
     	
 			similarity = sim.calculate(d1, d2);

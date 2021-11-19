@@ -52,9 +52,9 @@ public class EarthquakeTimeComparatorMinutes implements Comparator<Earthquake, A
 		double min1 = -1;
 		double min2 = -1;
 		
-		// return 0 if one or both has no time value
+		// return 0.5 if one or both has no time value
 		if (t1 == null || t2 == null) {
-			similarity =  0.0; 
+			similarity =  0.5; 
 		} else {
     	
 			min1 = t1.getMinute();

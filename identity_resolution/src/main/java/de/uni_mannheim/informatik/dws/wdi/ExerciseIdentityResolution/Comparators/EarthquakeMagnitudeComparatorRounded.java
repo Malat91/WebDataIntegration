@@ -24,18 +24,18 @@ import de.uni_mannheim.informatik.dws.wdi.ExerciseIdentityResolution.model.Movie
 
 /**
  * {@link Comparator} for {@link Earthquake}s based on the
- * {@link Earthquake#getMagnitude()} values, and their
+ * {@link Earthquake#getMagnitude()} rounded values, and their
  * {@link AbsoluteDifferenceSimilarity} similarity
  * 
  * @author Robert Meusel (robert@dwslab.de)
  * @author Oliver Lehmberg (oli@dwslab.de)
  * 
  */
-public class EarthquakeMagnitudeComparator implements Comparator<Earthquake, Attribute> {
+public class EarthquakeMagnitudeComparatorRounded implements Comparator<Earthquake, Attribute> {
 
 	private static final long serialVersionUID = 1L;
 	//PercentageSimilarity sim = new PercentageSimilarity(0.05);
-	private AbsoluteDifferenceSimilarity sim = new AbsoluteDifferenceSimilarity(2.5);
+	private AbsoluteDifferenceSimilarity sim = new AbsoluteDifferenceSimilarity(2);
 	
 	private ComparatorLogger comparisonLog;
 
@@ -48,14 +48,18 @@ public class EarthquakeMagnitudeComparator implements Comparator<Earthquake, Att
 		Double m1 = record1.getMagnitude();
 		Double m2 = record2.getMagnitude();
 		
+		// preprocessing
+		Double mr1 = (double) Math.round(m1);
+		Double mr2 = (double) Math.round(m2);
+		
 		double similarity;
 		
 		// return 0.5 if one or both has no magnitude value
-		if (m1 == -1 || m2 == -1) {
+		if (mr1 == -1.0 || mr2 == -1.0) {
 			similarity =  0.5; 
 		} else {
     	
-			similarity = sim.calculate(m1, m2);
+			similarity = sim.calculate(mr1, mr2);
 			
 		}
 		
@@ -64,6 +68,9 @@ public class EarthquakeMagnitudeComparator implements Comparator<Earthquake, Att
 			
 			this.comparisonLog.setRecord1Value(m1.toString());
 			this.comparisonLog.setRecord2Value(m2.toString());
+			
+			this.comparisonLog.setRecord1PreprocessedValue(mr1.toString());
+			this.comparisonLog.setRecord2PreprocessedValue(mr2.toString());
 		
 			this.comparisonLog.setSimilarity(Double.toString(similarity));
 		}

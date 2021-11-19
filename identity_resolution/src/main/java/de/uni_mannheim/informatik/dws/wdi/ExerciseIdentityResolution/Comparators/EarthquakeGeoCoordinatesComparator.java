@@ -53,7 +53,7 @@ public class EarthquakeGeoCoordinatesComparator implements Comparator<Earthquake
 			
 	    	similarity = sim.calculate(pair1,pair2);
 		} else {
-			similarity = 0.0;
+			similarity = 0.5;
 		}
 		
     	
