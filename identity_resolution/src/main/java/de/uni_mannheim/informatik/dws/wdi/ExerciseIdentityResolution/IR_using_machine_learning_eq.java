@@ -65,19 +65,19 @@ public class IR_using_machine_learning_eq {
 		// load the training set
 		logger.info("*\tLoading gold standard training set\t*");
 		MatchingGoldStandard gsTraining = new MatchingGoldStandard();
-		gsTraining.loadFromCSVFile(new File("data/goldstandard/ds2_to_ds3_gs_train.csv"));
+		gsTraining.loadFromCSVFile(new File("data/goldstandard/ds1_to_ds2_gs_train.csv"));
 		
 		// create a matching rule
 		
 		// use a logistic regression
-		//String options[] = new String[] { "-S" };
-		//String modelType = "SimpleLogistic"; 
+		String options[] = new String[] { "-S" };
+		String modelType = "SimpleLogistic"; 
 		
 		// use a non-linear model
-		String options[] = new String[] { "-U" };
+		//String options[] = new String[] { "-U" };
 		//String options[] = new String[] {  };
 		//String modelType = "RandomForest"; 
-		String modelType = "J48";  //J48-> decision tree
+		//String modelType = "J48";  //J48-> decision tree
 		WekaMatchingRule<Earthquake, Attribute> matchingRule = new WekaMatchingRule<>(0.5, modelType, options);
 		//matchingRule.setForwardSelection(true);
 		//matchingRule.setBackwardSelection(true);
@@ -97,7 +97,7 @@ public class IR_using_machine_learning_eq {
 		// train the matching rule's model
 		logger.info("*\tLearning matching rule\t*");
 		RuleLearner<Earthquake, Attribute> learner = new RuleLearner<>();
-		learner.learnMatchingRule(dataEarthquakes2, dataEarthquakes3, null, matchingRule, gsTraining);
+		learner.learnMatchingRule(dataEarthquakes1, dataEarthquakes2, null, matchingRule, gsTraining);
 		logger.info(String.format("Matching rule is:\n%s", matchingRule.getModelDescription()));
 		
 		// create a blocker (blocking strategy)
@@ -112,17 +112,17 @@ public class IR_using_machine_learning_eq {
 		// Execute the matching
 		logger.info("*\tRunning identity resolution\t*");
 		Processable<Correspondence<Earthquake, Attribute>> correspondences = engine.runIdentityResolution(
-				dataEarthquakes2, dataEarthquakes3, null, matchingRule,
+				dataEarthquakes1, dataEarthquakes2, null, matchingRule,
 				blocker);
 
 		// write the correspondences to the output file
-		new CSVCorrespondenceFormatter().writeCSV(new File("data/output/earthquake2_3_earthquake2.csv"), correspondences);
+		new CSVCorrespondenceFormatter().writeCSV(new File("data/output/earthquake1_2_earthquake2.csv"), correspondences);
 
 		// load the gold standard (test set)
 		logger.info("*\tLoading gold standard\t*");
 		MatchingGoldStandard gsTest = new MatchingGoldStandard();
 		gsTest.loadFromCSVFile(new File(
-				"data/goldstandard/ds2_to_ds3_gs_test.csv"));
+				"data/goldstandard/ds1_to_ds2_gs_test.csv"));
 		
 		// evaluate your result
 		logger.info("*\tEvaluating result\t*");

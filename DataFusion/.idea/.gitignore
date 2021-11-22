@@ -1,0 +1,8 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Datasource local storage ignored files
+/../../../../../../../../../../../:\Users\alebrink\Documents\01_Teaching\02_HWS2021\Web Data Integration\wdi-exercises\04_Data_Fusion\DF_exercise\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/

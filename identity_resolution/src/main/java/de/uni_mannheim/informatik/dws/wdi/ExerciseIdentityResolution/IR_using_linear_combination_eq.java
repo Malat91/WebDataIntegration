@@ -71,7 +71,7 @@ public class IR_using_linear_combination_eq
 		logger.info("*\tLoading gold standard\t*");
 		MatchingGoldStandard gsTest = new MatchingGoldStandard();
 		gsTest.loadFromCSVFile(new File(
-				"data/goldstandard/ds2_to_ds3_goldstandard.csv"));
+				"data/goldstandard/ds1_to_ds2_goldstandard.csv"));
 
 		// create a matching rule
 		LinearCombinationMatchingRule<Earthquake, Attribute> matchingRule = new LinearCombinationMatchingRule<>(
@@ -79,19 +79,19 @@ public class IR_using_linear_combination_eq
 		matchingRule.activateDebugReport("data/output/debugResultsMatchingRule.csv", 100000, gsTest);
 		
 		// add comparators
-		matchingRule.addComparator(new EarthquakeGeoCoordinatesComparator(), 0.4);
-		matchingRule.addComparator(new EarthquakeDateComparator(), 0.4);
-		matchingRule.addComparator(new EarthquakeTimeComparatorMinutes(), 0.1);
-		matchingRule.addComparator(new EarthquakeMagnitudeComparator(), 0.1);
-		//matchingRule.addComparator(new EarthquakeDepthComparator(), 0.25);
+		matchingRule.addComparator(new EarthquakeGeoCoordinatesComparator(), 0.1);
+		matchingRule.addComparator(new EarthquakeDateComparator(), 0.15);
+		matchingRule.addComparator(new EarthquakeTimeComparatorMinutes(), 0.25);
+		matchingRule.addComparator(new EarthquakeMagnitudeComparator(), 0.3);
+		matchingRule.addComparator(new EarthquakeDepthComparator(), 0.15);
 		//matchingRule.addComparator(new EarthquakeTimeComparatorMinutes(), 0.25);
 		//matchingRule.addComparator(new EarthquakeMagnitudeComparator(), 0.125);
-		//matchingRule.addComparator(new EarthquakeCountryComparatorLowerCaseJaccard(), 0.125);
+		//matchingRule.addComparator(new EarthquakeCountryComparatorLowerCaseJaccard(), 0.05);
 		
 		// create a blocker (blocking strategy)
 		//NoBlocker<Earthquake, Attribute> blocker = new NoBlocker<>();
 		StandardRecordBlocker<Earthquake, Attribute> blocker = new StandardRecordBlocker<Earthquake,Attribute>(new EarthquakeBlockingKeyByYearMonthGenerator());
-		//SortedNeighbourhoodBlocker<Earthquake, Attribute, Attribute> blocker = new SortedNeighbourhoodBlocker<>(new MovieBlockingKeyByTitleGenerator(), 1);
+		//SortedNeighbourhoodBlocker<Earthquake, Attribute, Attribute> blocker = new SortedNeighbourhoodBlocker<>(new EarthquakeBlockingKeyByYearMonthGenerator(), 1);
 		blocker.setMeasureBlockSizes(true);
 		//Write debug results to file:
 		blocker.collectBlockSizeData("data/output/debugResultsBlocking.csv", 100);
@@ -102,7 +102,7 @@ public class IR_using_linear_combination_eq
 		// Execute the matching
 		logger.info("*\tRunning identity resolution\t*");
 		Processable<Correspondence<Earthquake, Attribute>> correspondences = engine.runIdentityResolution(
-				dataEarthquakes2, dataEarthquakes3, null, matchingRule,
+				dataEarthquakes1, dataEarthquakes2, null, matchingRule,
 				blocker);
 
 		// Create a top-1 global matching
@@ -114,7 +114,7 @@ public class IR_using_linear_combination_eq
 //		 correspondences = maxWeight.getResult();
 
 		// write the correspondences to the output file
-		new CSVCorrespondenceFormatter().writeCSV(new File("data/output/ds2_to_ds3_correspondences.csv"), correspondences);
+		new CSVCorrespondenceFormatter().writeCSV(new File("data/output/ds1_to_ds2_correspondences.csv"), correspondences);
 
 		
 		
@@ -125,7 +125,7 @@ public class IR_using_linear_combination_eq
 				gsTest);
 
 		// print the evaluation result
-		logger.info("DS2 Earthquakes <-> DS3 Earthquakes");
+		logger.info("DS1 Earthquakes <-> DS2 Earthquakes");
 		logger.info(String.format(
 				"Precision: %.4f",perfTest.getPrecision()));
 		logger.info(String.format(
