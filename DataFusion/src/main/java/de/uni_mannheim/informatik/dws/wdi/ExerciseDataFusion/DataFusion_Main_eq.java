@@ -18,6 +18,7 @@ import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.fusers.DirectorFuse
 import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.fusers.TitleFuserShortestString;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.FusibleMovieFactory;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.Earthquake;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.EarthquakeXMLFormatter;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.MovieXMLFormatter;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.MovieXMLReader;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.EarthquakeXMLReader;
@@ -108,10 +109,12 @@ public class DataFusion_Main_eq
 		strategy.activateDebugReport("data/output/debugResultsDatafusion.csv", -1, gs);
 		
 		// add attribute fusers
-		strategy.addAttributeFuser(Earthquake.date, new TitleFuserShortestString(),new TitleEvaluationRule());
-		strategy.addAttributeFuser(Earthquake.time,new DirectorFuserLongestString(), new DirectorEvaluationRule());
-		strategy.addAttributeFuser(Earthquake.magnitude, new DateFuserFavourSource(),new DateEvaluationRule());
-		strategy.addAttributeFuser(Earthquake.depth,new ActorsFuserUnion(),new ActorsEvaluationRule());
+		strategy.addAttributeFuser(Earthquake.DATE, new TitleFuserShortestString(),new TitleEvaluationRule());
+		strategy.addAttributeFuser(Earthquake.TIME,new DirectorFuserLongestString(), new DirectorEvaluationRule());
+		strategy.addAttributeFuser(Earthquake.MAGNITUDE, new DateFuserFavourSource(),new DateEvaluationRule());
+		strategy.addAttributeFuser(Earthquake.DEPTH,new ActorsFuserUnion(),new ActorsEvaluationRule());
+		strategy.addAttributeFuser(Earthquake.LATITUDE, new TitleFuserShortestString(),new TitleEvaluationRule());
+		strategy.addAttributeFuser(Earthquake.LONGITUDE, new TitleFuserShortestString(),new TitleEvaluationRule());
 		
 		// create the fusion engine
 		DataFusionEngine<Earthquake, Attribute> engine = new DataFusionEngine<>(strategy);
@@ -130,7 +133,7 @@ public class DataFusion_Main_eq
 		new EarthquakeXMLFormatter().writeXML(new File("data/output/fused.xml"), fusedDataSet);
 
 		// evaluate
-		DataFusionEvaluator<Earthquake, Attribute> evaluator = new DataFusionEvaluator<>(strategy, new RecordGroupFactory<Movie, Attribute>());
+		DataFusionEvaluator<Earthquake, Attribute> evaluator = new DataFusionEvaluator<>(strategy, new RecordGroupFactory<Earthquake, Attribute>());
 		
 		double accuracy = evaluator.evaluate(fusedDataSet, gs, null);
 

@@ -22,12 +22,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import de.uni_mannheim.informatik.dws.winter.model.AbstractRecord;
-import de.uni_mannheim.informatik.dws.winter.model.Matchable;
 import de.uni_mannheim.informatik.dws.winter.model.defaultmodel.Attribute;
 
 /**
@@ -61,11 +59,6 @@ public class Earthquake extends AbstractRecord<Attribute> implements Serializabl
 	public Earthquake(String identifier, String provenance) {
 		super(identifier, provenance);
 		earthquake = new LinkedList<>();
-	}
-
-	@Override
-	public String getIdentifier() {
-		return id;
 	}
 
 	
@@ -141,6 +134,15 @@ public class Earthquake extends AbstractRecord<Attribute> implements Serializabl
 		this.totalDamages = totalDamages;
 	}
 
+	public List<Earthquake> getEarthquake() {
+		return earthquake;
+	}
+
+	public void setEarthquake(List<Earthquake> earthquake) {
+		this.earthquake = earthquake;
+	}
+	
+	
 	private Map<Attribute, Collection<String>> provenance = new HashMap<>();
 	private Collection<String> recordProvenance;
 
@@ -180,7 +182,49 @@ public class Earthquake extends AbstractRecord<Attribute> implements Serializabl
 	public static final Attribute LONGITUDE = new Attribute("Longitude");
 	
 
+	
+	
+	@Override
+	public boolean hasValue(Attribute attribute) {
+		if(attribute==DATE)
+			return getDate() != null;
+		else if(attribute==TIME)
+			return getTime().toString() != null && !getTime().toString().isEmpty();
+		else if(attribute==MAGNITUDE)
+			return Double.toString(getMagnitude()) != null;
+		else if(attribute==LATITUDE)
+			return Double.toString(getLatitude()) != null && !Double.toString(getLatitude()).isEmpty();
+		else if(attribute==LONGITUDE)
+			return Double.toString(getLongitude()).toString() != null && !Double.toString(getLongitude()).isEmpty();
+		else if(attribute==DEPTH)
+			return Double.toString(getDepth()) != null && getEarthquake().size() > 0;
+		else
+			return false;
+	}
 
+	@Override
+	public String toString() {
+		return String.format("[Earthquake %s: %s / %s / %s]", getIdentifier(), getDate().toString(),
+				getTime().toString(), Double.toString(getMagnitude()), Double.toString(getDepth()),Double.toString(getLatitude()),Double.toString(getLongitude()));
+	}
+
+	@Override
+	public int hashCode() {
+		return getIdentifier().hashCode();
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Earthquake){
+			return this.getIdentifier().equals(((Earthquake) obj).getIdentifier());
+		}else
+			return false;
+	}
+}
+	
+//	***************
+/*
 	@Override
 	public String toString() {
 		String s = (new ReflectionToStringBuilder(this) {
@@ -209,10 +253,10 @@ public class Earthquake extends AbstractRecord<Attribute> implements Serializabl
 	public boolean hasValue(Attribute attribute) {
 		// TODO Auto-generated method stub
 		return false;
-	}
+	}*/
 
 	
 	
 	
 	
-}
+
