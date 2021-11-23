@@ -71,7 +71,7 @@ public class EarthquakeTimeComparatorMinutesHours implements Comparator<Earthqua
 			similarityMin = sim.calculate(min1, min2);
 			similarityHour = sim.calculate(hour1,hour2);
 			
-			similarity = 0.3 * similarityMin + 0.7 * similarityHour;
+			similarity = 0.5 * similarityMin + 0.5 * similarityHour;
 			
 		}
 		
