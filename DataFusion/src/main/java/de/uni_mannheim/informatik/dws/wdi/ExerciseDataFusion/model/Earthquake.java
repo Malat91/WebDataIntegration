@@ -53,12 +53,10 @@ public class Earthquake extends AbstractRecord<Attribute> implements Serializabl
 	private double longitude;
 	private int deaths;
 	private double totalDamages;
-	private List<Earthquake> earthquake;
 	
 
 	public Earthquake(String identifier, String provenance) {
 		super(identifier, provenance);
-		earthquake = new LinkedList<>();
 	}
 
 	
@@ -133,14 +131,6 @@ public class Earthquake extends AbstractRecord<Attribute> implements Serializabl
 	public void setTotalDamages(double totalDamages) {
 		this.totalDamages = totalDamages;
 	}
-
-	public List<Earthquake> getEarthquake() {
-		return earthquake;
-	}
-
-	public void setEarthquake(List<Earthquake> earthquake) {
-		this.earthquake = earthquake;
-	}
 	
 	
 	private Map<Attribute, Collection<String>> provenance = new HashMap<>();
@@ -180,9 +170,11 @@ public class Earthquake extends AbstractRecord<Attribute> implements Serializabl
 	public static final Attribute DEPTH = new Attribute("Depth");
 	public static final Attribute LATITUDE = new Attribute("Latitude");
 	public static final Attribute LONGITUDE = new Attribute("Longitude");
-	
+	public static final Attribute COUNTRY = new Attribute("Country");
+	public static final Attribute DEATHS = new Attribute("Deaths");
+	public static final Attribute TOTALDAMAGES = new Attribute("TotalDamages");
 
-	
+
 	
 	@Override
 	public boolean hasValue(Attribute attribute) {
@@ -193,11 +185,17 @@ public class Earthquake extends AbstractRecord<Attribute> implements Serializabl
 		else if(attribute==MAGNITUDE)
 			return Double.toString(getMagnitude()) != null;
 		else if(attribute==LATITUDE)
-			return Double.toString(getLatitude()) != null && !Double.toString(getLatitude()).isEmpty();
+			return Double.toString(getLatitude()) != null && getLatitude() != -1;
 		else if(attribute==LONGITUDE)
-			return Double.toString(getLongitude()).toString() != null && !Double.toString(getLongitude()).isEmpty();
+			return Double.toString(getLongitude()) != null && getLongitude() != -1;
 		else if(attribute==DEPTH)
-			return Double.toString(getDepth()) != null && getEarthquake().size() > 0;
+			return Double.toString(getDepth()) != null && getDepth() != -1;
+		else if(attribute==COUNTRY)
+			return getCountry() != null && !getCountry().isEmpty();
+		else if (attribute==DEATHS)
+			return Integer.toString(getDeaths()) != null && getDeaths() != -1;
+		else if(attribute==TOTALDAMAGES)
+			return Double.toString(getTotalDamages()) != null && getTotalDamages() != -1;
 		else
 			return false;
 	}
@@ -223,40 +221,3 @@ public class Earthquake extends AbstractRecord<Attribute> implements Serializabl
 	}
 }
 	
-//	***************
-/*
-	@Override
-	public String toString() {
-		String s = (new ReflectionToStringBuilder(this) {
-	         protected boolean accept(Field f) {
-	             return super.accept(f) && !f.getName().equals("password");
-	         }
-	     }).toString();
-			
-		return s.substring(87);
-	}
-
-	@Override
-	public int hashCode() {
-		return getIdentifier().hashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if(obj instanceof Earthquake){
-			return this.getIdentifier().equals(((Earthquake) obj).getIdentifier());
-		}else
-			return false;
-	}
-
-	@Override
-	public boolean hasValue(Attribute attribute) {
-		// TODO Auto-generated method stub
-		return false;
-	}*/
-
-	
-	
-	
-	
-

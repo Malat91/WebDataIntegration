@@ -17,13 +17,18 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.w3c.dom.Node;
 
 import de.uni_mannheim.informatik.dws.winter.model.DataSet;
+import de.uni_mannheim.informatik.dws.winter.model.FusibleFactory;
+import de.uni_mannheim.informatik.dws.winter.model.RecordGroup;
 import de.uni_mannheim.informatik.dws.winter.model.defaultmodel.Attribute;
 import de.uni_mannheim.informatik.dws.winter.model.io.XMLMatchableReader;
 import de.uni_mannheim.informatik.dws.winter.utils.WinterLogManager;
@@ -33,7 +38,8 @@ import de.uni_mannheim.informatik.dws.winter.utils.WinterLogManager;
  * 
  * 
  */
-public class EarthquakeXMLReader extends XMLMatchableReader<Earthquake, Attribute>  {
+public class EarthquakeXMLReader extends XMLMatchableReader<Earthquake, Attribute>  implements
+FusibleFactory<Earthquake, Attribute> {
 	
 	private static final Logger logger = WinterLogManager.activateLogger("default");
 
@@ -43,6 +49,15 @@ public class EarthquakeXMLReader extends XMLMatchableReader<Earthquake, Attribut
 	@Override
 	protected void initialiseDataset(DataSet<Earthquake, Attribute> dataset) {
 		super.initialiseDataset(dataset);
+		dataset.addAttribute(Earthquake.DATE);
+		dataset.addAttribute(Earthquake.TIME);
+		dataset.addAttribute(Earthquake.MAGNITUDE);
+		dataset.addAttribute(Earthquake.DEPTH);
+		dataset.addAttribute(Earthquake.LATITUDE);
+		dataset.addAttribute(Earthquake.LONGITUDE);
+		dataset.addAttribute(Earthquake.COUNTRY);
+		dataset.addAttribute(Earthquake.DEATHS);
+		dataset.addAttribute(Earthquake.TOTALDAMAGES);
 		
 	}
 	
@@ -110,6 +125,22 @@ public class EarthquakeXMLReader extends XMLMatchableReader<Earthquake, Attribut
 
 			
 		return earthquake;
+	}
+	
+	@Override
+	public Earthquake createInstanceForFusion(RecordGroup<Earthquake, Attribute> cluster) {
+	
+	List<String> ids = new LinkedList<>();
+	
+	for (Earthquake eq : cluster.getRecords()) {
+		ids.add(eq.getIdentifier());
+	}
+	
+	Collections.sort(ids);
+	
+	String mergedId = StringUtils.join(ids, '+');
+	
+	return new Earthquake(mergedId, "fused");
 	}
 
 }

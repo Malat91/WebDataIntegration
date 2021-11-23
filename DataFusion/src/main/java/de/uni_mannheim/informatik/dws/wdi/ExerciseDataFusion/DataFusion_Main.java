@@ -54,15 +54,15 @@ public class DataFusion_Main
 		// Load the Data into FusibleDataSet
 		logger.info("*\tLoading datasets\t*");
 		FusibleDataSet<Movie, Attribute> ds1 = new FusibleHashedDataSet<>();
-		new MovieXMLReader().loadFromXML(new File("data/input/academy_awards.xml"), "/movies/movie", ds1);
+		new MovieXMLReader().loadFromXML(new File("data/ds_movies/input/academy_awards.xml"), "/movies/movie", ds1);
 		ds1.printDataSetDensityReport();
 
 		FusibleDataSet<Movie, Attribute> ds2 = new FusibleHashedDataSet<>();
-		new MovieXMLReader().loadFromXML(new File("data/input/actors.xml"), "/movies/movie", ds2);
+		new MovieXMLReader().loadFromXML(new File("data/ds_movies/input/actors.xml"), "/movies/movie", ds2);
 		ds2.printDataSetDensityReport();
 
 		FusibleDataSet<Movie, Attribute> ds3 = new FusibleHashedDataSet<>();
-		new MovieXMLReader().loadFromXML(new File("data/input/golden_globes.xml"), "/movies/movie", ds3);
+		new MovieXMLReader().loadFromXML(new File("data/ds_movies/input/golden_globes.xml"), "/movies/movie", ds3);
 		ds3.printDataSetDensityReport();
 
 		// Maintain Provenance
@@ -86,8 +86,8 @@ public class DataFusion_Main
 		// load correspondences
 		logger.info("*\tLoading correspondences\t*");
 		CorrespondenceSet<Movie, Attribute> correspondences = new CorrespondenceSet<>();
-		correspondences.loadCorrespondences(new File("data/correspondences/academy_awards_2_actors_correspondences.csv"),ds1, ds2);
-		correspondences.loadCorrespondences(new File("data/correspondences/actors_2_golden_globes_correspondences.csv"),ds2, ds3);
+		correspondences.loadCorrespondences(new File("data/ds_movies/correspondences/academy_awards_2_actors_correspondences.csv"),ds1, ds2);
+		correspondences.loadCorrespondences(new File("data/ds_movies/correspondences/actors_2_golden_globes_correspondences.csv"),ds2, ds3);
 
 		// write group size distribution
 		correspondences.printGroupSizeDistribution();
@@ -95,7 +95,7 @@ public class DataFusion_Main
 		// load the gold standard
 		logger.info("*\tEvaluating results\t*");
 		DataSet<Movie, Attribute> gs = new FusibleHashedDataSet<>();
-		new MovieXMLReader().loadFromXML(new File("data/goldstandard/gold.xml"), "/movies/movie", gs);
+		new MovieXMLReader().loadFromXML(new File("data/ds_movies/goldstandard/gold.xml"), "/movies/movie", gs);
 
 		for(Movie m : gs.get()) {
 			logger.info(String.format("gs: %s", m.getIdentifier()));
@@ -104,7 +104,7 @@ public class DataFusion_Main
 		// define the fusion strategy
 		DataFusionStrategy<Movie, Attribute> strategy = new DataFusionStrategy<>(new MovieXMLReader());
 		// write debug results to file
-		strategy.activateDebugReport("data/output/debugResultsDatafusion.csv", -1, gs);
+		strategy.activateDebugReport("data/ds_movies/output/debugResultsDatafusion.csv", -1, gs);
 		
 		// add attribute fusers
 		strategy.addAttributeFuser(Movie.TITLE, new TitleFuserShortestString(),new TitleEvaluationRule());
@@ -119,14 +119,14 @@ public class DataFusion_Main
 		engine.printClusterConsistencyReport(correspondences, null);
 		
 		// print record groups sorted by consistency
-		engine.writeRecordGroupsByConsistency(new File("data/output/recordGroupConsistencies.csv"), correspondences, null);
+		engine.writeRecordGroupsByConsistency(new File("data/ds_movies/output/recordGroupConsistencies.csv"), correspondences, null);
 
 		// run the fusion
 		logger.info("*\tRunning data fusion\t*");
 		FusibleDataSet<Movie, Attribute> fusedDataSet = engine.run(correspondences, null);
 
 		// write the result
-		new MovieXMLFormatter().writeXML(new File("data/output/fused.xml"), fusedDataSet);
+		new MovieXMLFormatter().writeXML(new File("data/ds_movies/output/fused.xml"), fusedDataSet);
 
 		// evaluate
 		DataFusionEvaluator<Movie, Attribute> evaluator = new DataFusionEvaluator<>(strategy, new RecordGroupFactory<Movie, Attribute>());

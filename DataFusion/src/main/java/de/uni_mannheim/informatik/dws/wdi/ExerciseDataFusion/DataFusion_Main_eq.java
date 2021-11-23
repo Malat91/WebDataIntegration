@@ -7,20 +7,8 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 import java.util.Locale;
 
-import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.evaluation.ActorsEvaluationRule;
-import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.evaluation.DateEvaluationRule;
-import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.evaluation.DirectorEvaluationRule;
-import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.evaluation.TitleEvaluationRule;
-import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.fusers.ActorsFuserUnion;
-import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.fusers.DateFuserFavourSource;
-import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.fusers.DateFuserVoting;
-import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.fusers.DirectorFuserLongestString;
-import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.fusers.TitleFuserShortestString;
-import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.FusibleMovieFactory;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.Earthquake;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.EarthquakeXMLFormatter;
-import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.MovieXMLFormatter;
-import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.MovieXMLReader;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.EarthquakeXMLReader;
 import de.uni_mannheim.informatik.dws.winter.datafusion.CorrespondenceSet;
 import de.uni_mannheim.informatik.dws.winter.datafusion.DataFusionEngine;
@@ -56,22 +44,24 @@ public class DataFusion_Main_eq
 		// Load the Data into FusibleDataSet
 		logger.info("*\tLoading datasets\t*");
 		FusibleDataSet<Earthquake, Attribute> dataEarthquakes1 = new FusibleHashedDataSet<>();
-		new EarthquakeXMLReader().loadFromXML(new File("data/input/target_earthquakes_1_without_duplicates.xml"), "/earthquakes/earthquake", dataEarthquakes1);
+		new EarthquakeXMLReader().loadFromXML(new File("data/ds_eq_12/input/target_earthquakes_1_without_duplicates.xml"), "/earthquakes/earthquake", dataEarthquakes1);
 		dataEarthquakes1.printDataSetDensityReport();
 
 		FusibleDataSet<Earthquake, Attribute> dataEarthquakes2 = new FusibleHashedDataSet<>();
-		new EarthquakeXMLReader().loadFromXML(new File("data/input/target_earthquakes_2_without_duplicates.xml"), "/earthquakes/earthquake", dataEarthquakes2);
+		new EarthquakeXMLReader().loadFromXML(new File("data/ds_eq_12/input/target_earthquakes_2_without_duplicates.xml"), "/earthquakes/earthquake", dataEarthquakes2);
 		dataEarthquakes2.printDataSetDensityReport();
-
+		
 		FusibleDataSet<Earthquake, Attribute> dataEarthquakes3 = new FusibleHashedDataSet<>();
-		new EarthquakeXMLReader().loadFromXML(new File("data/input/target_earthquakes_3_without_duplicates.xml.xml"), "/earthquakes/earthquake", dataEarthquakes3);
+		new EarthquakeXMLReader().loadFromXML(new File("data/ds_eq_23/input/target_earthquakes_3_without_duplicates_replaced_countries_time_normalized.xml"), "/earthquakes/earthquake", dataEarthquakes3);
 		dataEarthquakes3.printDataSetDensityReport();
+
 
 		// Maintain Provenance
 		// Scores (e.g. from rating)
 		dataEarthquakes1.setScore(1.0);
 		dataEarthquakes2.setScore(2.0);
-		dataEarthquakes3.setScore(3.0);
+		dataEarthquakes3.setScore(1.0);
+
 
 		// Date (e.g. last update)
 		DateTimeFormatter formatter = new DateTimeFormatterBuilder()
@@ -81,23 +71,24 @@ public class DataFusion_Main_eq
 		        .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
 		        .toFormatter(Locale.ENGLISH);
 		
-		dataEarthquakes1.setDate(LocalDateTime.parse("2012-01-01", formatter));
-		dataEarthquakes2.setDate(LocalDateTime.parse("2010-01-01", formatter));
-		dataEarthquakes3.setDate(LocalDateTime.parse("2008-01-01", formatter));
+		dataEarthquakes1.setDate(LocalDateTime.parse("2020-06-08", formatter));
+		dataEarthquakes2.setDate(LocalDateTime.parse("2017-01-26", formatter));
+		dataEarthquakes3.setDate(LocalDateTime.parse("2021-10-07", formatter));
 
 		// load correspondences
 		logger.info("*\tLoading correspondences\t*");
 		CorrespondenceSet<Earthquake, Attribute> correspondences = new CorrespondenceSet<>();
-		correspondences.loadCorrespondences(new File("data/correspondences/ds1_to_ds2_correspondences.csv.csv"),dataEarthquakes1, dataEarthquakes2);
-		//correspondences.loadCorrespondences(new File("data/correspondences/actors_2_golden_globes_correspondences.csv"),ds2, ds3);
+		correspondences.loadCorrespondences(new File("data/correspondences/ds1_to_ds2_correspondences.csv"),dataEarthquakes1, dataEarthquakes2);
+		correspondences.loadCorrespondences(new File("data/correspondences/ds2_to_ds3_correspondences.csv"),dataEarthquakes2, dataEarthquakes3);
 
+		
 		// write group size distribution
 		correspondences.printGroupSizeDistribution();
 
 		// load the gold standard
 		logger.info("*\tEvaluating results\t*");
 		DataSet<Earthquake, Attribute> gs = new FusibleHashedDataSet<>();
-		new EarthquakeXMLReader().loadFromXML(new File("data/goldstandard/gold.xml"), "/earthquakes/earthquake", gs);
+		new EarthquakeXMLReader().loadFromXML(new File("data/goldstandard/gold_eq.xml"), "/earthquakes/earthquake", gs);
 
 		for(Earthquake m : gs.get()) {
 			logger.info(String.format("gs: %s", m.getIdentifier()));
@@ -109,12 +100,15 @@ public class DataFusion_Main_eq
 		strategy.activateDebugReport("data/output/debugResultsDatafusion.csv", -1, gs);
 		
 		// add attribute fusers
-		strategy.addAttributeFuser(Earthquake.DATE, new TitleFuserShortestString(),new TitleEvaluationRule());
-		strategy.addAttributeFuser(Earthquake.TIME,new DirectorFuserLongestString(), new DirectorEvaluationRule());
-		strategy.addAttributeFuser(Earthquake.MAGNITUDE, new DateFuserFavourSource(),new DateEvaluationRule());
-		strategy.addAttributeFuser(Earthquake.DEPTH,new ActorsFuserUnion(),new ActorsEvaluationRule());
-		strategy.addAttributeFuser(Earthquake.LATITUDE, new TitleFuserShortestString(),new TitleEvaluationRule());
-		strategy.addAttributeFuser(Earthquake.LONGITUDE, new TitleFuserShortestString(),new TitleEvaluationRule());
+		strategy.addAttributeFuser(Earthquake.DATE, new DummyFuser(),new DummyEvaluationRule());
+		strategy.addAttributeFuser(Earthquake.TIME,new DummyFuser(), new DummyEvaluationRule());
+		strategy.addAttributeFuser(Earthquake.MAGNITUDE, new DummyFuser(),new DummyEvaluationRule());
+		strategy.addAttributeFuser(Earthquake.DEPTH,new DummyFuser(),new DummyEvaluationRule());
+		strategy.addAttributeFuser(Earthquake.LATITUDE, new DummyFuser(),new DummyEvaluationRule());
+		strategy.addAttributeFuser(Earthquake.LONGITUDE, new DummyFuser(),new DummyEvaluationRule());
+		strategy.addAttributeFuser(Earthquake.COUNTRY, new DummyFuser(),new DummyEvaluationRule());
+		strategy.addAttributeFuser(Earthquake.DEATHS, new DummyFuser(),new DummyEvaluationRule());
+		strategy.addAttributeFuser(Earthquake.TOTALDAMAGES, new DummyFuser(),new DummyEvaluationRule());
 		
 		// create the fusion engine
 		DataFusionEngine<Earthquake, Attribute> engine = new DataFusionEngine<>(strategy);
