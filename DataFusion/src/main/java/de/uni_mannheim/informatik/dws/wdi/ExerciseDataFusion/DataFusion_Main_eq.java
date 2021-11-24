@@ -7,6 +7,26 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 import java.util.Locale;
 
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.evaluation.CountryEvaluationRule_eq;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.evaluation.DateEvaluationRule_eq;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.evaluation.DeathsEvaluationRule_eq;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.evaluation.DepthEvaluationRule_eq;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.evaluation.LatitudeEvaluationRule_eq;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.evaluation.LongitudeEvaluationRule_eq;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.evaluation.MagnitudeEvaluationRule_eq;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.evaluation.TimeEvaluationRule_eq;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.evaluation.TotalDamagesEvaluationRule_eq;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.fusers.CountryFuserFavourSource_eq;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.fusers.CountryFuserLongestString_eq;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.fusers.CountryFuserShortestString_eq;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.fusers.DateFuserFavourSource_eq;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.fusers.DeathsFuserMedian_eq;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.fusers.DepthFuserMedian_eq;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.fusers.LatitudeFuserFavourSource_eq;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.fusers.LongitudeFuserFavourSource_eq;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.fusers.MagnitudeFuserMedian_eq;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.fusers.TimeFuserFavourSource_eq;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.fusers.TotalDamagesFuserMedian_eq;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.Earthquake;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.EarthquakeXMLFormatter;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.EarthquakeXMLReader;
@@ -21,6 +41,8 @@ import de.uni_mannheim.informatik.dws.winter.model.RecordGroupFactory;
 import de.uni_mannheim.informatik.dws.winter.model.defaultmodel.Attribute;
 import de.uni_mannheim.informatik.dws.winter.utils.WinterLogManager;
 import org.slf4j.Logger;
+
+
 
 public class DataFusion_Main_eq 
 {
@@ -100,20 +122,22 @@ public class DataFusion_Main_eq
 		strategy.activateDebugReport("data/output/debugResultsDatafusion.csv", -1, gs);
 		
 		// add attribute fusers
-		strategy.addAttributeFuser(Earthquake.DATE, new DummyFuser(),new DummyEvaluationRule());
-		strategy.addAttributeFuser(Earthquake.TIME,new DummyFuser(), new DummyEvaluationRule());
-		strategy.addAttributeFuser(Earthquake.MAGNITUDE, new DummyFuser(),new DummyEvaluationRule());
-		strategy.addAttributeFuser(Earthquake.DEPTH,new DummyFuser(),new DummyEvaluationRule());
-		strategy.addAttributeFuser(Earthquake.LATITUDE, new DummyFuser(),new DummyEvaluationRule());
-		strategy.addAttributeFuser(Earthquake.LONGITUDE, new DummyFuser(),new DummyEvaluationRule());
-		strategy.addAttributeFuser(Earthquake.COUNTRY, new DummyFuser(),new DummyEvaluationRule());
-		strategy.addAttributeFuser(Earthquake.DEATHS, new DummyFuser(),new DummyEvaluationRule());
-		strategy.addAttributeFuser(Earthquake.TOTALDAMAGES, new DummyFuser(),new DummyEvaluationRule());
+		strategy.addAttributeFuser(Earthquake.DATE, new DateFuserFavourSource_eq(),new DateEvaluationRule_eq());//possibly also weighted vote
+		strategy.addAttributeFuser(Earthquake.TIME,new TimeFuserFavourSource_eq(), new TimeEvaluationRule_eq());
+		strategy.addAttributeFuser(Earthquake.MAGNITUDE, new MagnitudeFuserMedian_eq(),new MagnitudeEvaluationRule_eq());
+		strategy.addAttributeFuser(Earthquake.DEPTH,new DepthFuserMedian_eq(),new DepthEvaluationRule_eq());
+		strategy.addAttributeFuser(Earthquake.LATITUDE, new LatitudeFuserFavourSource_eq(),new LatitudeEvaluationRule_eq());//Favour Source 
+		strategy.addAttributeFuser(Earthquake.LONGITUDE, new LongitudeFuserFavourSource_eq(),new LongitudeEvaluationRule_eq());//Favour Source
+		strategy.addAttributeFuser(Earthquake.COUNTRY, new CountryFuserFavourSource_eq(),new CountryEvaluationRule_eq());//Favour Souce, x-String
+		//strategy.addAttributeFuser(Earthquake.COUNTRY, new CountryFuserShortestString_eq(),new CountryEvaluationRule_eq());
+		//strategy.addAttributeFuser(Earthquake.COUNTRY, new CountryFuserLongestString_eq(),new CountryEvaluationRule_eq());
+		strategy.addAttributeFuser(Earthquake.DEATHS, new DeathsFuserMedian_eq(),new DeathsEvaluationRule_eq());//Median (round result)
+		strategy.addAttributeFuser(Earthquake.TOTALDAMAGES, new TotalDamagesFuserMedian_eq(),new TotalDamagesEvaluationRule_eq());//Median
 		
 		// create the fusion engine
 		DataFusionEngine<Earthquake, Attribute> engine = new DataFusionEngine<>(strategy);
 
-		// print consistency report
+		// print consistency report 
 		engine.printClusterConsistencyReport(correspondences, null);
 		
 		// print record groups sorted by consistency
