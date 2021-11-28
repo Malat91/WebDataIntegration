@@ -24,8 +24,6 @@ import de.uni_mannheim.informatik.dws.winter.model.io.XMLFormatter;
  */
 public class EarthquakeXMLFormatter extends XMLFormatter<Earthquake> {
 
-	EarthquakeXMLFormatter ds1 = new EarthquakeXMLFormatter();
-
 	@Override
 	public Element createRootElement(Document doc) {
 		return doc.createElement("movies");
@@ -57,8 +55,6 @@ public class EarthquakeXMLFormatter extends XMLFormatter<Earthquake> {
 				record.getMergedAttributeProvenance(Earthquake.LONGITUDE), doc));
 		
 
-		//earthquake.appendChild(createActorsElement(record, doc));
-
 		return earthquake;
 	}
 
@@ -69,17 +65,5 @@ public class EarthquakeXMLFormatter extends XMLFormatter<Earthquake> {
 		return elem;
 	}
 
-	/*protected Element createActorsElement(Movie record, Document doc) {
-		Element actorRoot = actorFormatter.createRootElement(doc);
-		actorRoot.setAttribute("provenance",
-				record.getMergedAttributeProvenance(Movie.ACTORS));
-
-		for (Actor a : record.getActors()) {
-			actorRoot.appendChild(actorFormatter
-					.createElementFromRecord(a, doc));
-		}
-
-		return actorRoot;
-	}*/
 
 }

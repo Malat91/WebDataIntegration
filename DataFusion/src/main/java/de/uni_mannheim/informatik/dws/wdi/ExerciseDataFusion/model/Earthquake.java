@@ -181,7 +181,7 @@ public class Earthquake extends AbstractRecord<Attribute> implements Serializabl
 		if(attribute==DATE)
 			return getDate() != null;
 		else if(attribute==TIME)
-			return getTime().toString() != null && !getTime().toString().isEmpty();
+			return getTime() != null && !getTime().toString().isEmpty();
 		else if(attribute==MAGNITUDE)
 			return Double.toString(getMagnitude()) != null;
 		else if(attribute==LATITUDE)
@@ -202,8 +202,13 @@ public class Earthquake extends AbstractRecord<Attribute> implements Serializabl
 
 	@Override
 	public String toString() {
-		return String.format("[Earthquake %s: %s / %s / %s]", getIdentifier(), getDate().toString(),
-				getTime().toString(), Double.toString(getMagnitude()), Double.toString(getDepth()),Double.toString(getLatitude()),Double.toString(getLongitude()));
+		String s = (new ReflectionToStringBuilder(this) {
+	         protected boolean accept(Field f) {
+	             return super.accept(f) && !f.getName().equals("password");
+	         }
+	     }).toString();
+			
+		return s.substring(87);
 	}
 
 	@Override

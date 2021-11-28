@@ -48,9 +48,14 @@ public class DeathsFuserMedian_eq extends
 	@Override
 	public void fuse(RecordGroup<Earthquake, Attribute> group, Earthquake fusedRecord, Processable<Correspondence<Attribute, Matchable>> schemaCorrespondences, Attribute schemaElement) {
 		FusedValue<Double, Earthquake, Attribute> fused = getFusedValue(group, schemaCorrespondences, schemaElement);
-		fusedRecord.setDeaths((int) Math.round(fused.getValue()));
-		fusedRecord.setAttributeProvenance(Earthquake.DEATHS,
-				fused.getOriginalIds());
+		if (fused.getValue() != null) {
+			fusedRecord.setDeaths((int) Math.round(fused.getValue()));
+			fusedRecord.setAttributeProvenance(Earthquake.DEATHS,
+					fused.getOriginalIds());
+		} /*else {
+			fusedRecord.setDeaths(-1);
+		}*/
+		
 	}
 
 }

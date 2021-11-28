@@ -47,9 +47,14 @@ public class TotalDamagesFuserMedian_eq extends
 	@Override
 	public void fuse(RecordGroup<Earthquake, Attribute> group, Earthquake fusedRecord, Processable<Correspondence<Attribute, Matchable>> schemaCorrespondences, Attribute schemaElement) {
 		FusedValue<Double, Earthquake, Attribute> fused = getFusedValue(group, schemaCorrespondences, schemaElement);
-		fusedRecord.setTotalDamages(fused.getValue());
-		fusedRecord.setAttributeProvenance(Earthquake.TOTALDAMAGES,
-				fused.getOriginalIds());
+		if (fused.getValue() != null) {
+			fusedRecord.setTotalDamages(fused.getValue());
+			fusedRecord.setAttributeProvenance(Earthquake.TOTALDAMAGES,
+					fused.getOriginalIds());
+		} /*else {
+			fusedRecord.setTotalDamages(-1);
+		}*/
+		
 	}
 
 }

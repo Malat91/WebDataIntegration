@@ -66,15 +66,15 @@ public class DataFusion_Main_eq
 		// Load the Data into FusibleDataSet
 		logger.info("*\tLoading datasets\t*");
 		FusibleDataSet<Earthquake, Attribute> dataEarthquakes1 = new FusibleHashedDataSet<>();
-		new EarthquakeXMLReader().loadFromXML(new File("data/ds_eq_12/input/target_earthquakes_1_without_duplicates.xml"), "/earthquakes/earthquake", dataEarthquakes1);
+		new EarthquakeXMLReader().loadFromXML(new File("data/ds_earthquakes/input/target_earthquakes_1_without_duplicates.xml"), "/earthquakes/earthquake", dataEarthquakes1);
 		dataEarthquakes1.printDataSetDensityReport();
 
 		FusibleDataSet<Earthquake, Attribute> dataEarthquakes2 = new FusibleHashedDataSet<>();
-		new EarthquakeXMLReader().loadFromXML(new File("data/ds_eq_12/input/target_earthquakes_2_without_duplicates.xml"), "/earthquakes/earthquake", dataEarthquakes2);
+		new EarthquakeXMLReader().loadFromXML(new File("data/ds_earthquakes/input/target_earthquakes_2_without_duplicates.xml"), "/earthquakes/earthquake", dataEarthquakes2);
 		dataEarthquakes2.printDataSetDensityReport();
 		
 		FusibleDataSet<Earthquake, Attribute> dataEarthquakes3 = new FusibleHashedDataSet<>();
-		new EarthquakeXMLReader().loadFromXML(new File("data/ds_eq_23/input/target_earthquakes_3_without_duplicates_replaced_countries_time_normalized.xml"), "/earthquakes/earthquake", dataEarthquakes3);
+		new EarthquakeXMLReader().loadFromXML(new File("data/ds_earthquakes/input/target_earthquakes_3_without_duplicates_replaced_countries_time_normalized.xml"), "/earthquakes/earthquake", dataEarthquakes3);
 		dataEarthquakes3.printDataSetDensityReport();
 
 
@@ -100,8 +100,8 @@ public class DataFusion_Main_eq
 		// load correspondences
 		logger.info("*\tLoading correspondences\t*");
 		CorrespondenceSet<Earthquake, Attribute> correspondences = new CorrespondenceSet<>();
-		correspondences.loadCorrespondences(new File("data/correspondences/ds1_to_ds2_correspondences.csv"),dataEarthquakes1, dataEarthquakes2);
-		correspondences.loadCorrespondences(new File("data/correspondences/ds2_to_ds3_correspondences.csv"),dataEarthquakes2, dataEarthquakes3);
+		correspondences.loadCorrespondences(new File("data/ds_earthquakes/correspondences/ds1_to_ds2_correspondences.csv"),dataEarthquakes1, dataEarthquakes2);
+		correspondences.loadCorrespondences(new File("data/ds_earthquakes/correspondences/ds2_to_ds3_correspondences.csv"),dataEarthquakes2, dataEarthquakes3);
 
 		
 		// write group size distribution
@@ -110,7 +110,7 @@ public class DataFusion_Main_eq
 		// load the gold standard
 		logger.info("*\tEvaluating results\t*");
 		DataSet<Earthquake, Attribute> gs = new FusibleHashedDataSet<>();
-		new EarthquakeXMLReader().loadFromXML(new File("data/goldstandard/gold_eq.xml"), "/earthquakes/earthquake", gs);
+		new EarthquakeXMLReader().loadFromXML(new File("data/ds_earthquakes/goldstandard/gold_eq.xml"), "/earthquakes/earthquake", gs);
 
 		for(Earthquake m : gs.get()) {
 			logger.info(String.format("gs: %s", m.getIdentifier()));
@@ -119,7 +119,7 @@ public class DataFusion_Main_eq
 		// define the fusion strategy
 		DataFusionStrategy<Earthquake, Attribute> strategy = new DataFusionStrategy<>(new EarthquakeXMLReader());
 		// write debug results to file
-		strategy.activateDebugReport("data/output/debugResultsDatafusion.csv", -1, gs);
+		strategy.activateDebugReport("data/ds_earthquakes/output/debugResultsDatafusion.csv", -1, gs);
 		
 		// add attribute fusers
 		strategy.addAttributeFuser(Earthquake.DATE, new DateFuserFavourSource_eq(),new DateEvaluationRule_eq());//possibly also weighted vote
@@ -141,14 +141,14 @@ public class DataFusion_Main_eq
 		engine.printClusterConsistencyReport(correspondences, null);
 		
 		// print record groups sorted by consistency
-		engine.writeRecordGroupsByConsistency(new File("data/output/recordGroupConsistencies.csv"), correspondences, null);
+		engine.writeRecordGroupsByConsistency(new File("data/ds_earthquakes/output/recordGroupConsistencies.csv"), correspondences, null);
 
 		// run the fusion
 		logger.info("*\tRunning data fusion\t*");
 		FusibleDataSet<Earthquake, Attribute> fusedDataSet = engine.run(correspondences, null);
 
 		// write the result
-		new EarthquakeXMLFormatter().writeXML(new File("data/output/fused.xml"), fusedDataSet);
+		new EarthquakeXMLFormatter().writeXML(new File("data/ds_earthquakes/output/fused.xml"), fusedDataSet);
 
 		// evaluate
 		DataFusionEvaluator<Earthquake, Attribute> evaluator = new DataFusionEvaluator<>(strategy, new RecordGroupFactory<Earthquake, Attribute>());
