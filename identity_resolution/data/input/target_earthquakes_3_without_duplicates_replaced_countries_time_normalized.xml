@@ -1237,6 +1237,18 @@
 		<totalDamages/>
 	</earthquake>
 	<earthquake>
+		<id>File3_0281</id>
+		<date>1976-08-16</date>
+		<time>16:11:00</time>
+		<magnitude>8</magnitude>
+		<depth/>
+		<country>Philippines</country>
+		<latitude>6.262</latitude>
+		<longitude>124.023</longitude>
+		<deaths>6000</deaths>
+		<totalDamages>134</totalDamages>
+	</earthquake>
+	<earthquake>
 		<id>File3_0102</id>
 		<date>1976-02-19</date>
 		<time/>
@@ -2401,6 +2413,18 @@
 		<totalDamages/>
 	</earthquake>
 	<earthquake>
+		<id>File3_0202</id>
+		<date>1952-11-04</date>
+		<time/>
+		<magnitude/>
+		<depth/>
+		<country>United States of America (the)</country>
+		<latitude/>
+		<longitude/>
+		<deaths/>
+		<totalDamages>0</totalDamages>
+	</earthquake>
+	<earthquake>
 		<id>File3_0198</id>
 		<date>1952-10-22</date>
 		<time/>
@@ -2447,18 +2471,6 @@
 		<longitude>-118.917</longitude>
 		<deaths>2</deaths>
 		<totalDamages>10</totalDamages>
-	</earthquake>
-	<earthquake>
-		<id>File3_0202</id>
-		<date>1952-11-04</date>
-		<time/>
-		<magnitude/>
-		<depth/>
-		<country>United States of America (the)</country>
-		<latitude/>
-		<longitude/>
-		<deaths/>
-		<totalDamages>0</totalDamages>
 	</earthquake>
 	<earthquake>
 		<id>File3_0203</id>
@@ -3385,18 +3397,6 @@
 		<totalDamages>17</totalDamages>
 	</earthquake>
 	<earthquake>
-		<id>File3_0281</id>
-		<date>1976-08-16</date>
-		<time>16:11:00</time>
-		<magnitude>8</magnitude>
-		<depth/>
-		<country>Philippines</country>
-		<latitude>6.262</latitude>
-		<longitude>124.023</longitude>
-		<deaths>6000</deaths>
-		<totalDamages>134</totalDamages>
-	</earthquake>
-	<earthquake>
 		<id>File3_0282</id>
 		<date>1976-11-06</date>
 		<time>04:00:00</time>
@@ -3707,6 +3707,18 @@
 		<longitude>-67.33</longitude>
 		<deaths>240</deaths>
 		<totalDamages>140</totalDamages>
+	</earthquake>
+	<earthquake>
+		<id>File3_1366</id>
+		<date>1967-07-29</date>
+		<time>16:24:00</time>
+		<magnitude>7</magnitude>
+		<depth/>
+		<country>Colombia</country>
+		<latitude>6.747</latitude>
+		<longitude>-73.032</longitude>
+		<deaths>20</deaths>
+		<totalDamages/>
 	</earthquake>
 	<earthquake>
 		<id>File3_0310</id>
@@ -4066,6 +4078,18 @@
 		<latitude>8.717</latitude>
 		<longitude>-83.123</longitude>
 		<deaths>10</deaths>
+		<totalDamages>1</totalDamages>
+	</earthquake>
+	<earthquake>
+		<id>File3_0415</id>
+		<date>1983-04-03</date>
+		<time>03:51:00</time>
+		<magnitude>7</magnitude>
+		<depth/>
+		<country>Indonesia</country>
+		<latitude>5.723</latitude>
+		<longitude>94.722</longitude>
+		<deaths/>
 		<totalDamages>1</totalDamages>
 	</earthquake>
 	<earthquake>
@@ -5017,18 +5041,6 @@
 		<totalDamages>416</totalDamages>
 	</earthquake>
 	<earthquake>
-		<id>File3_0415</id>
-		<date>1983-04-03</date>
-		<time>03:51:00</time>
-		<magnitude>7</magnitude>
-		<depth/>
-		<country>Indonesia</country>
-		<latitude>5.723</latitude>
-		<longitude>94.722</longitude>
-		<deaths/>
-		<totalDamages>1</totalDamages>
-	</earthquake>
-	<earthquake>
 		<id>File3_0416</id>
 		<date>1983-07-22</date>
 		<time>02:41:00</time>
@@ -5231,18 +5243,6 @@
 		<longitude>70.896</longitude>
 		<deaths>5</deaths>
 		<totalDamages>2</totalDamages>
-	</earthquake>
-	<earthquake>
-		<id>File3_0472</id>
-		<date>1985-07-29</date>
-		<time/>
-		<magnitude>7</magnitude>
-		<depth/>
-		<country>Afghanistan</country>
-		<latitude>36.19</latitude>
-		<longitude>70.896</longitude>
-		<deaths/>
-		<totalDamages/>
 	</earthquake>
 	<earthquake>
 		<id>File3_0434</id>
@@ -6217,18 +6217,6 @@
 		<totalDamages/>
 	</earthquake>
 	<earthquake>
-		<id>File3_0511</id>
-		<date>1991-05-04</date>
-		<time/>
-		<magnitude>6</magnitude>
-		<depth/>
-		<country>Sri Lanka</country>
-		<latitude>9.542</latitude>
-		<longitude>82.418</longitude>
-		<deaths/>
-		<totalDamages/>
-	</earthquake>
-	<earthquake>
 		<id>File3_0566</id>
 		<date>1991-05-04</date>
 		<time/>
@@ -6299,18 +6287,6 @@
 		<longitude>5.798</longitude>
 		<deaths>1</deaths>
 		<totalDamages>50</totalDamages>
-	</earthquake>
-	<earthquake>
-		<id>File3_0577</id>
-		<date>1992-04-13</date>
-		<time/>
-		<magnitude>6</magnitude>
-		<depth/>
-		<country>Netherlands</country>
-		<latitude>51.153</latitude>
-		<longitude>5.798</longitude>
-		<deaths/>
-		<totalDamages/>
 	</earthquake>
 	<earthquake>
 		<id>File3_0515</id>
@@ -7681,30 +7657,6 @@
 		<totalDamages>36</totalDamages>
 	</earthquake>
 	<earthquake>
-		<id>File3_0689</id>
-		<date>1995-07-11</date>
-		<time>22:17:00</time>
-		<magnitude>7</magnitude>
-		<depth/>
-		<country>China</country>
-		<latitude>21.966</latitude>
-		<longitude>99.196</longitude>
-		<deaths/>
-		<totalDamages/>
-	</earthquake>
-	<earthquake>
-		<id>File3_0717</id>
-		<date>1995-07-11</date>
-		<time>22:17:00</time>
-		<magnitude>7</magnitude>
-		<depth/>
-		<country>China</country>
-		<latitude>21.966</latitude>
-		<longitude>99.196</longitude>
-		<deaths/>
-		<totalDamages/>
-	</earthquake>
-	<earthquake>
 		<id>File3_0640</id>
 		<date>1995-10-23</date>
 		<time>22:47:00</time>
@@ -7931,18 +7883,6 @@
 		<longitude>70.089</longitude>
 		<deaths>2323</deaths>
 		<totalDamages>10</totalDamages>
-	</earthquake>
-	<earthquake>
-		<id>File3_0658</id>
-		<date>1998-04-12</date>
-		<time>11:55:00</time>
-		<magnitude>6</magnitude>
-		<depth/>
-		<country>Slovenia</country>
-		<latitude>46.245</latitude>
-		<longitude>13.652</longitude>
-		<deaths/>
-		<totalDamages/>
 	</earthquake>
 	<earthquake>
 		<id>File3_0726</id>
@@ -9229,6 +9169,18 @@
 		<totalDamages/>
 	</earthquake>
 	<earthquake>
+		<id>File3_0787</id>
+		<date>1999-11-26</date>
+		<time>13:21:00</time>
+		<magnitude>8</magnitude>
+		<depth/>
+		<country>Vanuatu</country>
+		<latitude>-16.423</latitude>
+		<longitude>168.214</longitude>
+		<deaths>12</deaths>
+		<totalDamages/>
+	</earthquake>
+	<earthquake>
 		<id>File3_0766</id>
 		<date>1999-09-30</date>
 		<time>04:31:00</time>
@@ -9490,18 +9442,6 @@
 		<latitude/>
 		<longitude/>
 		<deaths>2</deaths>
-		<totalDamages/>
-	</earthquake>
-	<earthquake>
-		<id>File3_0787</id>
-		<date>1999-11-26</date>
-		<time>13:21:00</time>
-		<magnitude>8</magnitude>
-		<depth/>
-		<country>Vanuatu</country>
-		<latitude>-16.423</latitude>
-		<longitude>168.214</longitude>
-		<deaths>12</deaths>
 		<totalDamages/>
 	</earthquake>
 	<earthquake>
@@ -9814,18 +9754,6 @@
 		<latitude>36.429</latitude>
 		<longitude>70.438</longitude>
 		<deaths>3</deaths>
-		<totalDamages/>
-	</earthquake>
-	<earthquake>
-		<id>File3_0869</id>
-		<date>2002-03-03</date>
-		<time/>
-		<magnitude>6</magnitude>
-		<depth/>
-		<country>Afghanistan</country>
-		<latitude>36.429</latitude>
-		<longitude>70.438</longitude>
-		<deaths/>
 		<totalDamages/>
 	</earthquake>
 	<earthquake>
@@ -10213,18 +10141,6 @@
 		<totalDamages>116</totalDamages>
 	</earthquake>
 	<earthquake>
-		<id>File3_0847</id>
-		<date>2003-02-24</date>
-		<time>02:03:00</time>
-		<magnitude>6</magnitude>
-		<depth/>
-		<country>China</country>
-		<latitude>39.61</latitude>
-		<longitude>77.23</longitude>
-		<deaths>268</deaths>
-		<totalDamages>157</totalDamages>
-	</earthquake>
-	<earthquake>
 		<id>File3_0848</id>
 		<date>2003-01-23</date>
 		<time>00:08:00</time>
@@ -10235,6 +10151,18 @@
 		<longitude>118.524</longitude>
 		<deaths/>
 		<totalDamages/>
+	</earthquake>
+	<earthquake>
+		<id>File3_0847</id>
+		<date>2003-02-24</date>
+		<time>02:03:00</time>
+		<magnitude>6</magnitude>
+		<depth/>
+		<country>China</country>
+		<latitude>39.61</latitude>
+		<longitude>77.23</longitude>
+		<deaths>268</deaths>
+		<totalDamages>157</totalDamages>
 	</earthquake>
 	<earthquake>
 		<id>File3_0849</id>
@@ -10549,6 +10477,18 @@
 		<totalDamages>233</totalDamages>
 	</earthquake>
 	<earthquake>
+		<id>File3_0896</id>
+		<date>2003-05-26</date>
+		<time>19:23:00</time>
+		<magnitude>7</magnitude>
+		<depth/>
+		<country>Indonesia</country>
+		<latitude>2.354</latitude>
+		<longitude>128.855</longitude>
+		<deaths>1</deaths>
+		<totalDamages/>
+	</earthquake>
+	<earthquake>
 		<id>File3_0877</id>
 		<date>2003-09-24</date>
 		<time>18:50:00</time>
@@ -10765,18 +10705,6 @@
 		<totalDamages/>
 	</earthquake>
 	<earthquake>
-		<id>File3_0894</id>
-		<date>2003-12-25</date>
-		<time>07:11:00</time>
-		<magnitude>7</magnitude>
-		<depth/>
-		<country>Panama</country>
-		<latitude>8.416</latitude>
-		<longitude>-82.824</longitude>
-		<deaths>2</deaths>
-		<totalDamages/>
-	</earthquake>
-	<earthquake>
 		<id>File3_0936</id>
 		<date>2003-12-25</date>
 		<time>07:11:00</time>
@@ -10798,18 +10726,6 @@
 		<latitude>36.939</latitude>
 		<longitude>3.578</longitude>
 		<deaths>9</deaths>
-		<totalDamages/>
-	</earthquake>
-	<earthquake>
-		<id>File3_0896</id>
-		<date>2003-05-26</date>
-		<time>19:23:00</time>
-		<magnitude>7</magnitude>
-		<depth/>
-		<country>Indonesia</country>
-		<latitude>2.354</latitude>
-		<longitude>128.855</longitude>
-		<deaths>1</deaths>
 		<totalDamages/>
 	</earthquake>
 	<earthquake>
@@ -11195,18 +11111,6 @@
 		<longitude>8.077</longitude>
 		<deaths/>
 		<totalDamages>12</totalDamages>
-	</earthquake>
-	<earthquake>
-		<id>File3_0920</id>
-		<date>2004-11-21</date>
-		<time/>
-		<magnitude>6</magnitude>
-		<depth/>
-		<country>Guadeloupe</country>
-		<latitude>15.679</latitude>
-		<longitude>-61.706</longitude>
-		<deaths/>
-		<totalDamages/>
 	</earthquake>
 	<earthquake>
 		<id>File3_0923</id>
@@ -12022,30 +11926,6 @@
 		<latitude>-8.466</latitude>
 		<longitude>157.043</longitude>
 		<deaths>52</deaths>
-		<totalDamages/>
-	</earthquake>
-	<earthquake>
-		<id>File3_1002</id>
-		<date>2007-11-29</date>
-		<time/>
-		<magnitude>7</magnitude>
-		<depth/>
-		<country>Martinique</country>
-		<latitude>14.944</latitude>
-		<longitude>-61.274</longitude>
-		<deaths/>
-		<totalDamages/>
-	</earthquake>
-	<earthquake>
-		<id>File3_1036</id>
-		<date>2007-11-29</date>
-		<time/>
-		<magnitude>7</magnitude>
-		<depth/>
-		<country>Martinique</country>
-		<latitude>14.944</latitude>
-		<longitude>-61.274</longitude>
-		<deaths/>
 		<totalDamages/>
 	</earthquake>
 	<earthquake>
@@ -12949,18 +12829,6 @@
 		<totalDamages/>
 	</earthquake>
 	<earthquake>
-		<id>File3_1081</id>
-		<date>2011-09-18</date>
-		<time/>
-		<magnitude>7</magnitude>
-		<depth/>
-		<country>India</country>
-		<latitude>27.73</latitude>
-		<longitude>88.155</longitude>
-		<deaths>7</deaths>
-		<totalDamages/>
-	</earthquake>
-	<earthquake>
 		<id>File3_1099</id>
 		<date>2011-09-18</date>
 		<time/>
@@ -13019,18 +12887,6 @@
 		<longitude>97.957</longitude>
 		<deaths>25</deaths>
 		<totalDamages>290</totalDamages>
-	</earthquake>
-	<earthquake>
-		<id>File3_1080</id>
-		<date>2011-03-24</date>
-		<time/>
-		<magnitude>7</magnitude>
-		<depth/>
-		<country>Myanmar</country>
-		<latitude>20.687</latitude>
-		<longitude>99.822</longitude>
-		<deaths/>
-		<totalDamages/>
 	</earthquake>
 	<earthquake>
 		<id>File3_1098</id>
@@ -13213,7 +13069,7 @@
 		<totalDamages/>
 	</earthquake>
 	<earthquake>
-		<id>File3_1097</id>
+		<id>File3_1105</id>
 		<date>2011-07-18</date>
 		<time>19:35:00</time>
 		<magnitude>6</magnitude>
@@ -13221,7 +13077,7 @@
 		<country>Kyrgyzstan</country>
 		<latitude>40.081</latitude>
 		<longitude>71.41</longitude>
-		<deaths/>
+		<deaths>13</deaths>
 		<totalDamages/>
 	</earthquake>
 	<earthquake>
@@ -13234,18 +13090,6 @@
 		<latitude>40.081</latitude>
 		<longitude>71.41</longitude>
 		<deaths/>
-		<totalDamages/>
-	</earthquake>
-	<earthquake>
-		<id>File3_1105</id>
-		<date>2011-07-18</date>
-		<time>19:35:00</time>
-		<magnitude>6</magnitude>
-		<depth/>
-		<country>Kyrgyzstan</country>
-		<latitude>40.081</latitude>
-		<longitude>71.41</longitude>
-		<deaths>13</deaths>
 		<totalDamages/>
 	</earthquake>
 	<earthquake>
@@ -13547,6 +13391,18 @@
 		<longitude>104.262</longitude>
 		<deaths>95</deaths>
 		<totalDamages>1000</totalDamages>
+	</earthquake>
+	<earthquake>
+		<id>File3_1168</id>
+		<date>2013-07-21</date>
+		<time>04:09:00</time>
+		<magnitude>7</magnitude>
+		<depth/>
+		<country>New Zealand</country>
+		<latitude>-41.704</latitude>
+		<longitude>174.337</longitude>
+		<deaths/>
+		<totalDamages>50</totalDamages>
 	</earthquake>
 	<earthquake>
 		<id>File3_1129</id>
@@ -13981,18 +13837,6 @@
 		<totalDamages>600</totalDamages>
 	</earthquake>
 	<earthquake>
-		<id>File3_1165</id>
-		<date>2013-04-16</date>
-		<time/>
-		<magnitude>8</magnitude>
-		<depth/>
-		<country>Iran, Islamic Republic of</country>
-		<latitude>28.033</latitude>
-		<longitude>61.996</longitude>
-		<deaths/>
-		<totalDamages/>
-	</earthquake>
-	<earthquake>
 		<id>File3_1169</id>
 		<date>2013-04-16</date>
 		<time/>
@@ -14027,18 +13871,6 @@
 		<longitude>134.828</longitude>
 		<deaths/>
 		<totalDamages/>
-	</earthquake>
-	<earthquake>
-		<id>File3_1168</id>
-		<date>2013-07-21</date>
-		<time>04:09:00</time>
-		<magnitude>7</magnitude>
-		<depth/>
-		<country>New Zealand</country>
-		<latitude>-41.704</latitude>
-		<longitude>174.337</longitude>
-		<deaths/>
-		<totalDamages>50</totalDamages>
 	</earthquake>
 	<earthquake>
 		<id>File3_1170</id>
@@ -14221,18 +14053,6 @@
 		<totalDamages>450</totalDamages>
 	</earthquake>
 	<earthquake>
-		<id>File3_1238</id>
-		<date>2014-05-24</date>
-		<time/>
-		<magnitude>7</magnitude>
-		<depth/>
-		<country>Greece</country>
-		<latitude>40.2893</latitude>
-		<longitude>25.3889</longitude>
-		<deaths/>
-		<totalDamages/>
-	</earthquake>
-	<earthquake>
 		<id>File3_1184</id>
 		<date>2014-05-30</date>
 		<time>01:20:00</time>
@@ -14362,18 +14182,6 @@
 		<latitude>36.5244</latitude>
 		<longitude>70.3676</longitude>
 		<deaths>115</deaths>
-		<totalDamages/>
-	</earthquake>
-	<earthquake>
-		<id>File3_1217</id>
-		<date>2015-10-26</date>
-		<time>09:09:00</time>
-		<magnitude>8</magnitude>
-		<depth/>
-		<country>Afghanistan</country>
-		<latitude>36.5244</latitude>
-		<longitude>70.3676</longitude>
-		<deaths/>
 		<totalDamages/>
 	</earthquake>
 	<earthquake>
@@ -15179,18 +14987,6 @@
 		<longitude>104.957</longitude>
 		<deaths>13</deaths>
 		<totalDamages>1300</totalDamages>
-	</earthquake>
-	<earthquake>
-		<id>File3_1262</id>
-		<date>2019-05-26</date>
-		<time>07:41:00</time>
-		<magnitude>8</magnitude>
-		<depth/>
-		<country>Peru</country>
-		<latitude>-5.812</latitude>
-		<longitude>-75.27</longitude>
-		<deaths/>
-		<totalDamages/>
 	</earthquake>
 	<earthquake>
 		<id>File3_1314</id>
@@ -16417,18 +16213,6 @@
 		<totalDamages/>
 	</earthquake>
 	<earthquake>
-		<id>File3_1366</id>
-		<date>1967-07-29</date>
-		<time>16:24:00</time>
-		<magnitude>7</magnitude>
-		<depth/>
-		<country>Colombia</country>
-		<latitude>6.747</latitude>
-		<longitude>-73.032</longitude>
-		<deaths>20</deaths>
-		<totalDamages/>
-	</earthquake>
-	<earthquake>
 		<id>File3_1367</id>
 		<date>1967-07-13</date>
 		<time/>
@@ -16641,18 +16425,6 @@
 		<country>Argentina</country>
 		<latitude>-31.818</latitude>
 		<longitude>-68.847</longitude>
-		<deaths/>
-		<totalDamages/>
-	</earthquake>
-	<earthquake>
-		<id>File3_1389</id>
-		<date>2021-04-28</date>
-		<time/>
-		<magnitude>6</magnitude>
-		<depth/>
-		<country>India</country>
-		<latitude>26.781</latitude>
-		<longitude>92.457</longitude>
 		<deaths/>
 		<totalDamages/>
 	</earthquake>
