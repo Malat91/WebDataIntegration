@@ -52,9 +52,7 @@ public class DeathsFuserMedian_eq extends
 			fusedRecord.setDeaths((int) Math.round(fused.getValue()));
 			fusedRecord.setAttributeProvenance(Earthquake.DEATHS,
 					fused.getOriginalIds());
-		} /*else {
-			fusedRecord.setDeaths(-1);
-		}*/
+		}
 		
 	}
 

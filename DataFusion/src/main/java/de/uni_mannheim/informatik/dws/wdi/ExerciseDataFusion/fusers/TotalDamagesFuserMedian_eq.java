@@ -51,9 +51,7 @@ public class TotalDamagesFuserMedian_eq extends
 			fusedRecord.setTotalDamages(fused.getValue());
 			fusedRecord.setAttributeProvenance(Earthquake.TOTALDAMAGES,
 					fused.getOriginalIds());
-		} /*else {
-			fusedRecord.setTotalDamages(-1);
-		}*/
+		} 
 		
 	}
 
