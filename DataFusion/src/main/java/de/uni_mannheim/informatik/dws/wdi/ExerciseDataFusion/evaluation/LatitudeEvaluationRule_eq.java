@@ -29,12 +29,17 @@ public class LatitudeEvaluationRule_eq extends EvaluationRule<Earthquake, Attrib
 
 	@Override
 	public boolean isEqual(Earthquake record1, Earthquake record2, Attribute schemaElement) {
-		if(record1.getLatitude() == -10000 && record2.getLatitude() == -10000)
+		Long rec1=Math.round(record1.getLatitude());
+		Long rec2=Math.round(record2.getLatitude());
+		if(rec1 == -10000 && rec2 == -10000)
 			return true;
-		else if(record1.getLatitude() == -10000 ^ record2.getLatitude() == -10000)
-			return false;
 		else 
-			return record1.getLatitude() == record2.getLatitude();//alternatively might also be rounded, but should be close
+			if(rec1 == -10000 ^ rec2 == -10000)
+		return false;
+		
+		else 
+		return rec1 == rec2;//alternatively might also be rounded, but should be close
+		
 			//return Math.round(record1.getLatitude()) == Math.round(record2.getLatitude());
 	}
 

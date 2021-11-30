@@ -80,7 +80,7 @@ public class DataFusion_Main_eq
 
 		// Maintain Provenance
 		// Scores (e.g. from rating)
-		dataEarthquakes1.setScore(1.0);
+		dataEarthquakes1.setScore(3.0);
 		dataEarthquakes2.setScore(2.0);
 		dataEarthquakes3.setScore(1.0);
 
