@@ -6,7 +6,7 @@
 		<time>22:31:51</time>
 		<latitude>-15.861</latitude>
 		<longitude>167.092</longitude>
-		<country>Vanuatu</country>
+		<country>VANUATU</country>
 		<magnitude>7.6</magnitude>
 		<depth>30</depth>
 		<totalDamages>0</totalDamages>
@@ -18,7 +18,7 @@
 		<time>05:34:06</time>
 		<latitude>15.791</latitude>
 		<longitude>121.63</longitude>
-		<country>Philippines</country>
+		<country>PHILIPPINES</country>
 		<magnitude>7.4</magnitude>
 		<depth>25</depth>
 		<totalDamages>0</totalDamages>
@@ -42,7 +42,7 @@
 		<time>15:29:21</time>
 		<latitude>36.28</latitude>
 		<longitude>69.68</longitude>
-		<country>Afghanistan</country>
+		<country>AFGHANISTAN</country>
 		<magnitude>6.3</magnitude>
 		<depth>24</depth>
 		<totalDamages>0</totalDamages>
@@ -54,7 +54,7 @@
 		<time>20:03:21</time>
 		<latitude>40.74</latitude>
 		<longitude>23.23</longitude>
-		<country>Greece</country>
+		<country>GREECE</country>
 		<magnitude>6.4</magnitude>
 		<depth>3</depth>
 		<totalDamages>250</totalDamages>
@@ -66,7 +66,7 @@
 		<time>07:24:25</time>
 		<latitude>29.91</latitude>
 		<longitude>57.72</longitude>
-		<country>Iran</country>
+		<country>IRAN</country>
 		<magnitude>6.6</magnitude>
 		<depth>33</depth>
 		<totalDamages>5</totalDamages>
@@ -102,7 +102,7 @@
 		<time>23:37:07</time>
 		<latitude>25.61</latitude>
 		<longitude>101.06</longitude>
-		<country>China</country>
+		<country>CHINA</country>
 		<magnitude>5.9</magnitude>
 		<depth>33</depth>
 		<totalDamages>73</totalDamages>
@@ -114,7 +114,7 @@
 		<time>06:27:53</time>
 		<latitude>34.083</latitude>
 		<longitude>132.526</longitude>
-		<country>Japan</country>
+		<country>JAPAN</country>
 		<magnitude>6.7</magnitude>
 		<depth>50</depth>
 		<totalDamages>500</totalDamages>
@@ -126,7 +126,7 @@
 		<time>01:17:01</time>
 		<latitude>33.56</latitude>
 		<longitude>48.73</longitude>
-		<country>Iran</country>
+		<country>IRAN</country>
 		<magnitude>6.1</magnitude>
 		<depth>7</depth>
 		<totalDamages>42</totalDamages>
@@ -138,7 +138,7 @@
 		<time>19:00:19</time>
 		<latitude>14.98</latitude>
 		<longitude>-61.26</longitude>
-		<country>Martinique</country>
+		<country>MARTINIQUE</country>
 		<magnitude>7.4</magnitude>
 		<depth>150</depth>
 		<totalDamages/>
@@ -150,7 +150,7 @@
 		<time>19:43:55</time>
 		<latitude>-0.414</latitude>
 		<longitude>132.885</longitude>
-		<country>Indonesia</country>
+		<country>INDONESIA</country>
 		<magnitude>7.6</magnitude>
 		<depth>30</depth>
 		<totalDamages></totalDamages>
@@ -162,7 +162,7 @@
 		<time>02:20:49</time>
 		<latitude>-43.56</latitude>
 		<longitude>172.74</longitude>
-		<country>New Zealand</country>
+		<country>NEW ZEALAND</country>
 		<magnitude>6</magnitude>
 		<depth>7</depth>
 		<totalDamages>3000</totalDamages>
@@ -174,7 +174,7 @@
 		<time>20:55:02</time>
 		<latitude>6.84</latitude>
 		<longitude>-73.12</longitude>
-		<country>Colombia</country>
+		<country>COLOMBIA</country>
 		<magnitude>6.2</magnitude>
 		<depth>178.0</depth>
 		<totalDamages/>
@@ -186,7 +186,7 @@
 		<time>14:24:31</time>
 		<latitude>39.22</latitude>
 		<longitude>73.97</longitude>
-		<country>China</country>
+		<country>CHINA</country>
 		<magnitude>6.6</magnitude>
 		<depth>10</depth>
 		<totalDamages>5</totalDamages>
@@ -198,7 +198,7 @@
 		<time>15:24:00</time>
 		<magnitude>7.0</magnitude>
 		<depth>55</depth>
-		<country>Colombia</country>
+		<country>COLOMBIA</country>
 		<latitude>2.849</latitude>
 		<longitude>74.798</longitude>
 		<deaths>98</deaths>
@@ -222,7 +222,7 @@
 		<time>08:02:02</time>
 		<magnitude>6.8</magnitude>
 		<depth>33</depth>
-		<country>India</country>
+		<country>INDIA</country>
 		<latitude>32.46</latitude>
 		<longitude>78.43</longitude>
 		<deaths>47</deaths>
@@ -234,7 +234,7 @@
 		<time>17:12:47</time>
 		<magnitude>6.1</magnitude>
 		<depth>33</depth>
-		<country>China</country>
+		<country>CHINA</country>
 		<latitude>31.24</latitude>
 		<longitude>86.847</longitude>
 		<deaths/>
