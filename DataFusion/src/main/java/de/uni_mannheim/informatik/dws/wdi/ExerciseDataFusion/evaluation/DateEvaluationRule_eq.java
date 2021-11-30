@@ -28,12 +28,15 @@ public class DateEvaluationRule_eq extends EvaluationRule<Earthquake, Attribute>
 
 	@Override
 	public boolean isEqual(Earthquake record1, Earthquake record2, Attribute schemaElement) {
-		if(record1.getDate()==null && record2.getDate()==null)
-			return true;
-		else if(record1.getDate()==null ^ record2.getDate()==null)
-			return false;
+		if(record1.getDate()==null && record2.getDate()==null) {
+			return true;}
+		else if(record1.getDate()==null ^ record2.getDate()==null) {
+			return false;}
 		else
-			return record1.getDate() == record2.getDate(); //Exact date is really important, therefore match on whole date not only year, month, etc.
+			//Exact date is really important, therefore match on whole date not only year, month, etc.
+			return (record1.getDate().getYear() == record2.getDate().getYear()
+			&& record1.getDate().getMonth() == record2.getDate().getMonth()
+			&& record1.getDate().getDayOfYear() == record2.getDate().getDayOfYear());
 	}
 
 	/* (non-Javadoc)
