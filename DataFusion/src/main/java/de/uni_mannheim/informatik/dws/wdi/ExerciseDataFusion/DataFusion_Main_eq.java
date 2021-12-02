@@ -59,7 +59,7 @@ public class DataFusion_Main_eq
 	 *
 	 */
 
-	private static final Logger logger = WinterLogManager.activateLogger("default");
+	private static final Logger logger = WinterLogManager.activateLogger("trace");
 	
 	public static void main( String[] args ) throws Exception
     {
@@ -125,9 +125,9 @@ public class DataFusion_Main_eq
 		strategy.addAttributeFuser(Earthquake.DATE, new DateFuserFavourSource_eq(),new DateEvaluationRule_eq());//possibly also weighted vote
 		strategy.addAttributeFuser(Earthquake.TIME,new TimeFuserFavourSource_eq(), new TimeEvaluationRule_eq());
 		strategy.addAttributeFuser(Earthquake.MAGNITUDE, new MagnitudeFuserMedian_eq(),new MagnitudeEvaluationRule_eq());
-		strategy.addAttributeFuser(Earthquake.DEPTH,new DepthFuserMedian_eq(),new DepthEvaluationRule_eq());
+		strategy.addAttributeFuser(Earthquake.DEPTH,new DepthFuserMedian_eq(),new DepthEvaluationRule_eq()); //similarity Numerical Comparison
 		strategy.addAttributeFuser(Earthquake.LATITUDE, new LatitudeFuserFavourSource_eq(),new LatitudeEvaluationRule_eq());//Favour Source 
-		strategy.addAttributeFuser(Earthquake.LONGITUDE, new LongitudeFuserFavourSource_eq(),new LongitudeEvaluationRule_eq());//Favour Source
+		strategy.addAttributeFuser(Earthquake.LONGITUDE, new LongitudeFuserFavourSource_eq(),new LongitudeEvaluationRule_eq());//Favour Source/TODO:Similarity http://geographiclib.sourceforge.net --> Uses both long and latitude to calc. distance in km. But we only have one give and one which is the same --> use percenteage of difference
 		strategy.addAttributeFuser(Earthquake.COUNTRY, new CountryFuserFavourSource_eq(),new CountryEvaluationRule_eq());//Favour Souce, x-String
 		//strategy.addAttributeFuser(Earthquake.COUNTRY, new CountryFuserShortestString_eq(),new CountryEvaluationRule_eq());
 		//strategy.addAttributeFuser(Earthquake.COUNTRY, new CountryFuserLongestString_eq(),new CountryEvaluationRule_eq());
@@ -152,7 +152,7 @@ public class DataFusion_Main_eq
 
 		// evaluate
 		DataFusionEvaluator<Earthquake, Attribute> evaluator = new DataFusionEvaluator<>(strategy, new RecordGroupFactory<Earthquake, Attribute>());
-		
+
 		double accuracy = evaluator.evaluate(fusedDataSet, gs, null);
 
 		logger.info(String.format("*\tAccuracy: %.2f", accuracy));

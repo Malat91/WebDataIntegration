@@ -40,5 +40,10 @@
 			<artifactId>winter-framework</artifactId>
 			<version>1.4</version>
 		</dependency>
+		   <dependency>
+     <groupId>net.sf.geographiclib</groupId>
+     <artifactId>GeographicLib-Java</artifactId>
+     <version>1.52</version>
+   </dependency> 
 	</dependencies>
 </project>

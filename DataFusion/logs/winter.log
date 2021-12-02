@@ -1942,3 +1942,65 @@
 [TRACE] 2021-11-15 10:45:32.662 [de.uni_mannheim.informatik.dws.winter.datafusion.DataFusionEvaluator] - 	Actors: 0.90
 [TRACE] 2021-11-15 10:45:32.662 [de.uni_mannheim.informatik.dws.winter.datafusion.DataFusionEvaluator] - 	Date: 0.00
 [INFO ] 2021-11-15 10:45:32.662 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main] - *	Accuracy: 0.70
+[INFO ] 2021-12-02 11:56:11.522 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - *	Loading datasets	*
+[INFO ] 2021-12-02 11:56:11.746 [de.uni_mannheim.informatik.dws.winter.model.io.XMLMatchableReader] - Loading 5627 elements from target_earthquakes_1_without_duplicates.xml
+[INFO ] 2021-12-02 11:56:11.878 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - DataSet density: 0.73
+[INFO ] 2021-12-02 11:56:11.879 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - Attributes densities:
+[INFO ] 2021-12-02 11:56:11.899 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Longitude: 1.00
+[INFO ] 2021-12-02 11:56:11.899 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Magnitude: 1.00
+[INFO ] 2021-12-02 11:56:11.900 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Date: 1.00
+[INFO ] 2021-12-02 11:56:11.900 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Latitude: 1.00
+[INFO ] 2021-12-02 11:56:11.900 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Country: 1.00
+[INFO ] 2021-12-02 11:56:11.900 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Deaths: 0.29
+[INFO ] 2021-12-02 11:56:11.900 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Time: 0.62
+[INFO ] 2021-12-02 11:56:11.900 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	TotalDamages: 0.08
+[INFO ] 2021-12-02 11:56:11.900 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Depth: 0.57
+[INFO ] 2021-12-02 11:56:12.192 [de.uni_mannheim.informatik.dws.winter.model.io.XMLMatchableReader] - Loading 23412 elements from target_earthquakes_2_without_duplicates.xml
+[INFO ] 2021-12-02 11:56:12.437 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - DataSet density: 0.78
+[INFO ] 2021-12-02 11:56:12.437 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - Attributes densities:
+[INFO ] 2021-12-02 11:56:12.495 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Longitude: 1.00
+[INFO ] 2021-12-02 11:56:12.496 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Magnitude: 1.00
+[INFO ] 2021-12-02 11:56:12.496 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Date: 1.00
+[INFO ] 2021-12-02 11:56:12.496 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Latitude: 1.00
+[INFO ] 2021-12-02 11:56:12.496 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Country: 1.00
+[INFO ] 2021-12-02 11:56:12.496 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Deaths: 0.00
+[INFO ] 2021-12-02 11:56:12.496 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Time: 1.00
+[INFO ] 2021-12-02 11:56:12.497 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	TotalDamages: 0.00
+[INFO ] 2021-12-02 11:56:12.497 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Depth: 1.00
+[INFO ] 2021-12-02 11:56:12.520 [de.uni_mannheim.informatik.dws.winter.model.io.XMLMatchableReader] - Loading 1519 elements from target_earthquakes_3_without_duplicates_replaced_countries_time_normalized.xml
+[INFO ] 2021-12-02 11:56:12.602 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - DataSet density: 0.76
+[INFO ] 2021-12-02 11:56:12.602 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - Attributes densities:
+[INFO ] 2021-12-02 11:56:12.607 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Longitude: 1.00
+[INFO ] 2021-12-02 11:56:12.607 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Magnitude: 1.00
+[INFO ] 2021-12-02 11:56:12.609 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Date: 1.00
+[INFO ] 2021-12-02 11:56:12.609 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Latitude: 1.00
+[INFO ] 2021-12-02 11:56:12.610 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Country: 1.00
+[INFO ] 2021-12-02 11:56:12.610 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Deaths: 0.76
+[INFO ] 2021-12-02 11:56:12.610 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Time: 0.70
+[INFO ] 2021-12-02 11:56:12.610 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	TotalDamages: 0.39
+[INFO ] 2021-12-02 11:56:12.610 [de.uni_mannheim.informatik.dws.winter.model.FusibleHashedDataSet] - 	Depth: 0.00
+[INFO ] 2021-12-02 11:56:12.613 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - *	Loading correspondences	*
+[INFO ] 2021-12-02 11:56:12.631 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - *	Evaluating results	*
+[INFO ] 2021-12-02 11:56:12.633 [de.uni_mannheim.informatik.dws.winter.model.io.XMLMatchableReader] - Loading 20 elements from gold_eq.xml
+[INFO ] 2021-12-02 11:56:12.634 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - gs: File1_3894
+[INFO ] 2021-12-02 11:56:12.634 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - gs: File1_4038
+[INFO ] 2021-12-02 11:56:12.634 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - gs: File1_5930
+[INFO ] 2021-12-02 11:56:12.635 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - gs: File1_4367
+[INFO ] 2021-12-02 11:56:12.635 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - gs: File1_5852
+[INFO ] 2021-12-02 11:56:12.635 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - gs: File1_4169
+[INFO ] 2021-12-02 11:56:12.635 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - gs: File1_5311
+[INFO ] 2021-12-02 11:56:12.635 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - gs: File1_4107
+[INFO ] 2021-12-02 11:56:12.635 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - gs: File1_5009
+[INFO ] 2021-12-02 11:56:12.635 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - gs: File1_4777
+[INFO ] 2021-12-02 11:56:12.635 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - gs: File1_5503
+[INFO ] 2021-12-02 11:56:12.636 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - gs: File1_4711
+[INFO ] 2021-12-02 11:56:12.636 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - gs: File1_4276
+[INFO ] 2021-12-02 11:56:12.636 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - gs: File1_4562
+[INFO ] 2021-12-02 11:56:12.636 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - gs: File1_5650
+[INFO ] 2021-12-02 11:56:12.636 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - gs: File1_4064
+[INFO ] 2021-12-02 11:56:12.636 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - gs: File1_3936
+[INFO ] 2021-12-02 11:56:12.636 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - gs: File1_4968
+[INFO ] 2021-12-02 11:56:12.637 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - gs: File1_5419
+[INFO ] 2021-12-02 11:56:12.637 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - gs: File2_8042
+[INFO ] 2021-12-02 11:56:12.771 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - *	Running data fusion	*
+[INFO ] 2021-12-02 11:56:13.163 [de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.DataFusion_Main_eq] - *	Accuracy: 0.81

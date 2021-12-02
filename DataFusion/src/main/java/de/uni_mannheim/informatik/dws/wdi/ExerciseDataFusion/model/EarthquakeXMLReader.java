@@ -41,7 +41,7 @@ import de.uni_mannheim.informatik.dws.winter.utils.WinterLogManager;
 public class EarthquakeXMLReader extends XMLMatchableReader<Earthquake, Attribute>  implements
 FusibleFactory<Earthquake, Attribute> {
 	
-	private static final Logger logger = WinterLogManager.activateLogger("default");
+	//private static final Logger logger = WinterLogManager.activateLogger("default");
 
 	/* (non-Javadoc)
 	 * @see de.uni_mannheim.informatik.wdi.model.io.XMLMatchableReader#initialiseDataset(de.uni_mannheim.informatik.wdi.model.DataSet)

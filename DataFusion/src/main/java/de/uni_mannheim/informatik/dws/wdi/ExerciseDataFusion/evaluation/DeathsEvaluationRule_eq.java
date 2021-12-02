@@ -12,6 +12,7 @@
 package de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.evaluation;
 
 import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.Earthquake;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.Helper;
 import de.uni_mannheim.informatik.dws.winter.datafusion.EvaluationRule;
 import de.uni_mannheim.informatik.dws.winter.model.Correspondence;
 import de.uni_mannheim.informatik.dws.winter.model.Matchable;
@@ -29,12 +30,16 @@ public class DeathsEvaluationRule_eq extends EvaluationRule<Earthquake, Attribut
 
 	@Override
 	public boolean isEqual(Earthquake record1, Earthquake record2, Attribute schemaElement) {
+		
+		Helper helper = new Helper();
+		
 		if(record1.getDeaths() == -1 && record2.getDeaths() == -1)
 			return true;
 		else if(record1.getDeaths() == -1 ^ record2.getDeaths() == -1)
 			return false;
 		else 
-			return (int) Math.round(record1.getDeaths()) == (int) Math.round(record2.getDeaths());
+			return helper.numeric_abs(record1.getDeaths(), record2.getDeaths(), 5);//allowed to differ to up to d_max = 5 people
+			//return (int) Math.round(record1.getDeaths()) == (int) Math.round(record2.getDeaths());//0.6 accuracy
 	}
 
 	/* (non-Javadoc)

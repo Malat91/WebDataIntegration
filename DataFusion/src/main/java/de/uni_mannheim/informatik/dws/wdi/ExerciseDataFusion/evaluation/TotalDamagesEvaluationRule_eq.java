@@ -12,6 +12,7 @@
 package de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.evaluation;
 
 import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.Earthquake;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.Helper;
 import de.uni_mannheim.informatik.dws.winter.datafusion.EvaluationRule;
 import de.uni_mannheim.informatik.dws.winter.model.Correspondence;
 import de.uni_mannheim.informatik.dws.winter.model.Matchable;
@@ -29,12 +30,16 @@ public class TotalDamagesEvaluationRule_eq extends EvaluationRule<Earthquake, At
 
 	@Override
 	public boolean isEqual(Earthquake record1, Earthquake record2, Attribute schemaElement) {
+		
+		Helper helper = new Helper();
+		
 		if(record1.getTotalDamages() == -1 && record2.getTotalDamages() == -1)
 			return true;
 		else if(record1.getTotalDamages() == -1 ^ record2.getTotalDamages() == -1)
 			return false;
 		else 
-			return (int) Math.round(record1.getTotalDamages()) == (int) Math.round(record2.getTotalDamages()); //rounded damages should be enough for a match
+			return helper.numeric_perc(record1.getTotalDamages(), record2.getTotalDamages(), 0.2); //--> 20% difference
+			//return (int) Math.round(record1.getTotalDamages()) == (int) Math.round(record2.getTotalDamages()); //rounded damages should be enough for a match
 	}
 
 	/* (non-Javadoc)

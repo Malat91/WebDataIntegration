@@ -16,6 +16,7 @@ import de.uni_mannheim.informatik.dws.winter.datafusion.EvaluationRule;
 import de.uni_mannheim.informatik.dws.winter.model.Correspondence;
 import de.uni_mannheim.informatik.dws.winter.model.Matchable;
 import de.uni_mannheim.informatik.dws.winter.model.defaultmodel.Attribute;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.Helper;
 
 /**
  * {@link EvaluationRule} for the directors of {@link Earthquake}s. The rule simply
@@ -29,12 +30,16 @@ public class DepthEvaluationRule_eq extends EvaluationRule<Earthquake, Attribute
 
 	@Override
 	public boolean isEqual(Earthquake record1, Earthquake record2, Attribute schemaElement) {
+	
+		Helper helper = new Helper();
+		
 		if(record1.getDepth() == -1 && record2.getDepth() == -1)
 			return true;
 		else if(record1.getDepth() == -1 ^ record2.getDepth() == -1)
 			return false;
 		else 
-			return (int) Math.round(record1.getDepth()) == (int) Math.round(record2.getDepth());
+			return helper.numeric_perc(record1.getDepth(), record2.getDepth(), 0.1);//pc_max = 0.1 --> 10% tolerate difference, if depth is within fixed range this could also be done with numeric_abs
+			//return (int) Math.round(record1.getDepth()) == (int) Math.round(record2.getDepth());
 	}
 
 	/* (non-Javadoc)
@@ -45,5 +50,6 @@ public class DepthEvaluationRule_eq extends EvaluationRule<Earthquake, Attribute
 			Correspondence<Attribute, Matchable> schemaCorrespondence) {
 		return isEqual(record1, record2, (Attribute)null);
 	}
+	
 	
 }

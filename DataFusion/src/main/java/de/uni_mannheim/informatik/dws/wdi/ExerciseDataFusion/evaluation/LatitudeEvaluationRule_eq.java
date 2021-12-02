@@ -12,6 +12,7 @@
 package de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.evaluation;
 
 import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.Earthquake;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.Helper;
 import de.uni_mannheim.informatik.dws.winter.datafusion.EvaluationRule;
 import de.uni_mannheim.informatik.dws.winter.model.Correspondence;
 import de.uni_mannheim.informatik.dws.winter.model.Matchable;
@@ -29,16 +30,25 @@ public class LatitudeEvaluationRule_eq extends EvaluationRule<Earthquake, Attrib
 
 	@Override
 	public boolean isEqual(Earthquake record1, Earthquake record2, Attribute schemaElement) {
-		Long rec1=Math.round(record1.getLatitude());
-		Long rec2=Math.round(record2.getLatitude());
-		if(rec1 == -10000 && rec2 == -10000)
+//		Long rec1=Math.round(record1.getLatitude());
+//		Long rec2=Math.round(record2.getLatitude());
+		
+		double rec1_lat=record1.getLatitude();
+		double rec2_lat=record2.getLatitude();
+		double rec1_long=record1.getLongitude();
+		double rec2_long=record2.getLongitude();
+		
+		Helper helper = new Helper();
+		
+		if(rec1_lat == -10000 && rec2_lat == -10000)
 			return true;
 		else 
-			if(rec1 == -10000 ^ rec2 == -10000)
+			if(rec1_lat == -10000 ^ rec2_lat == -10000)
 		return false;
 		
 		else 
-		return rec1 == rec2;//alternatively might also be rounded, but should be close
+		return (helper.calculateGeoDistance(rec1_long, rec1_lat, rec2_long, rec2_lat, 15000));
+		//return rec1_lat == rec2_lat;//alternatively might also be rounded, but should be close
 		
 			//return Math.round(record1.getLatitude()) == Math.round(record2.getLatitude());
 	}
