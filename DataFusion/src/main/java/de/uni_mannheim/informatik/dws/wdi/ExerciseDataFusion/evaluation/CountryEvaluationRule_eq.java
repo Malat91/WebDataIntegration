@@ -16,6 +16,8 @@ import de.uni_mannheim.informatik.dws.winter.datafusion.EvaluationRule;
 import de.uni_mannheim.informatik.dws.winter.model.Correspondence;
 import de.uni_mannheim.informatik.dws.winter.model.Matchable;
 import de.uni_mannheim.informatik.dws.winter.model.defaultmodel.Attribute;
+import de.uni_mannheim.informatik.dws.winter.similarity.SimilarityMeasure;
+import de.uni_mannheim.informatik.dws.winter.similarity.string.TokenizingJaccardSimilarity;
 
 /**
  * {@link EvaluationRule} for the date of {@link Earthquake}s. The rule simply
@@ -28,12 +30,16 @@ public class CountryEvaluationRule_eq extends EvaluationRule<Earthquake, Attribu
 
 	@Override
 	public boolean isEqual(Earthquake record1, Earthquake record2, Attribute schemaElement) {
+		
+		SimilarityMeasure<String> sim = new TokenizingJaccardSimilarity();
+		
 		if(record1.getCountry()==null && record2.getCountry()==null)
 			return true;
 		else if(record1.getCountry()==null ^ record2.getCountry()==null)
 			return false;
 		else
-			return record1.getCountry().equals(record2.getCountry()); 
+			return (sim.calculate(record1.getCountry(), record2.getCountry()) >= 0.9);
+			//return record1.getCountry().equals(record2.getCountry()); 
 	}
 
 	/* (non-Javadoc)

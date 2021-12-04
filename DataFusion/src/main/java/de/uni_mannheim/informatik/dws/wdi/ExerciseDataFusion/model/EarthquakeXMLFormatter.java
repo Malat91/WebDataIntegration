@@ -26,7 +26,7 @@ public class EarthquakeXMLFormatter extends XMLFormatter<Earthquake> {
 
 	@Override
 	public Element createRootElement(Document doc) {
-		return doc.createElement("movies");
+		return doc.createElement("earthquakes");
 	}
 
 	@Override

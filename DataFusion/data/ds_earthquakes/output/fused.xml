@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<movies>
+<earthquakes>
   <earthquake>
     <id>File1_5796+File2_22055+File3_1181</id>
     <date provenance="File1_5796">2014-02-12</date>
@@ -14274,4 +14274,4 @@
     <Latitude provenance="File1_4782">51.934</Latitude>
     <Longitude provenance="File1_4782">158.647</Longitude>
   </earthquake>
-</movies>
+</earthquakes>

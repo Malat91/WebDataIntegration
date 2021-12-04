@@ -11,7 +11,9 @@
  */
 package de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.evaluation;
 
+import java.time.Duration;
 import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.Earthquake;
+import de.uni_mannheim.informatik.dws.wdi.ExerciseDataFusion.model.Helper;
 import de.uni_mannheim.informatik.dws.winter.datafusion.EvaluationRule;
 import de.uni_mannheim.informatik.dws.winter.model.Correspondence;
 import de.uni_mannheim.informatik.dws.winter.model.Matchable;
@@ -28,13 +30,15 @@ public class TimeEvaluationRule_eq extends EvaluationRule<Earthquake, Attribute>
 
 	@Override
 	public boolean isEqual(Earthquake record1, Earthquake record2, Attribute schemaElement) {
+		Helper helper = new Helper();
+		
 		if(record1.getTime()==null && record2.getTime()==null)
 			return true;
 		else if(record1.getTime()==null ^ record2.getTime()==null)
 			return false;
 		else
-			//return record1.getTime() == record2.getTime();
-			return record1.getTime().getHour() == record2.getTime().getHour(); //Exact time match not as important. But hours should be roughly the same
+			return helper.abs(Duration.between(record1.getTime(),record2.getTime()).toMinutes()) <= 15;
+			//return record1.getTime().getHour() == record2.getTime().getHour(); //Exact time match not as important. But hours should be roughly the same
 	}
 
 	/* (non-Javadoc)
