@@ -38,7 +38,7 @@ public class TotalDamagesEvaluationRule_eq extends EvaluationRule<Earthquake, At
 		else if(record1.getTotalDamages() == -1 ^ record2.getTotalDamages() == -1)
 			return false;
 		else 
-			return helper.numeric_perc(record1.getTotalDamages(), record2.getTotalDamages(), 0.2); //--> 20% difference
+			return helper.numeric_perc(record1.getTotalDamages(), record2.getTotalDamages(), 0.03); //--% difference
 			//return (int) Math.round(record1.getTotalDamages()) == (int) Math.round(record2.getTotalDamages()); //rounded damages should be enough for a match
 	}
 

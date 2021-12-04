@@ -146,7 +146,9 @@ public class DataFusion_Main_eq
 		// run the fusion
 		logger.info("*\tRunning data fusion\t*");
 		FusibleDataSet<Earthquake, Attribute> fusedDataSet = engine.run(correspondences, null);
-
+		fusedDataSet.printDataSetDensityReport();//print density of fused dataset
+		System.out.println(fusedDataSet.size());//get fused datset size
+		
 		// write the result
 		new EarthquakeXMLFormatter().writeXML(new File("data/ds_earthquakes/output/fused.xml"), fusedDataSet);
 

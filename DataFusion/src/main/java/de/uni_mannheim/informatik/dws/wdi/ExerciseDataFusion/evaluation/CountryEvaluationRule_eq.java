@@ -38,7 +38,7 @@ public class CountryEvaluationRule_eq extends EvaluationRule<Earthquake, Attribu
 		else if(record1.getCountry()==null ^ record2.getCountry()==null)
 			return false;
 		else
-			return (sim.calculate(record1.getCountry(), record2.getCountry()) >= 0.9);
+			return (sim.calculate(record1.getCountry(), record2.getCountry()) == 1.0);
 			//return record1.getCountry().equals(record2.getCountry()); 
 	}
 

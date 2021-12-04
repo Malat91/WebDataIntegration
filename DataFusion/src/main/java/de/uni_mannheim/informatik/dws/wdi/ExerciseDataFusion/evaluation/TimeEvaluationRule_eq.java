@@ -37,7 +37,7 @@ public class TimeEvaluationRule_eq extends EvaluationRule<Earthquake, Attribute>
 		else if(record1.getTime()==null ^ record2.getTime()==null)
 			return false;
 		else
-			return helper.abs(Duration.between(record1.getTime(),record2.getTime()).toMinutes()) <= 15;
+			return helper.abs(Duration.between(record1.getTime(),record2.getTime()).toMinutes()) <= 5;
 			//return record1.getTime().getHour() == record2.getTime().getHour(); //Exact time match not as important. But hours should be roughly the same
 	}
 

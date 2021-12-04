@@ -38,7 +38,7 @@ public class DepthEvaluationRule_eq extends EvaluationRule<Earthquake, Attribute
 		else if(record1.getDepth() == -1 ^ record2.getDepth() == -1)
 			return false;
 		else 
-			return helper.numeric_perc(record1.getDepth(), record2.getDepth(), 0.1);//pc_max = 0.1 --> 10% tolerate difference, if depth is within fixed range this could also be done with numeric_abs
+			return helper.numeric_perc(record1.getDepth(), record2.getDepth(), 0.03);//pc_max = 0.1 --> 10% tolerate difference, if depth is within fixed range this could also be done with numeric_abs
 			//return (int) Math.round(record1.getDepth()) == (int) Math.round(record2.getDepth());
 	}
 
